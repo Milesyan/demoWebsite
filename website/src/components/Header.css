@@ -1,0 +1,8 @@
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  box-shadow: 0 6px 4px #777;
+}
