@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import UserInfo from './UserInfo';
+import RequestInvite from './RequestInvite';
 export default combineReducers({
-  UserInfo
+  RequestInvite
 })

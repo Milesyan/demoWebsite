@@ -2,8 +2,10 @@ import React, { PureComponent } from 'react'
 import styles from './RequestInviteDialog.module.scss';
 import { Button, Modal, Input } from '../basicComponents';
 import { validateEmail } from '../utils';
-
-export default class RequestInviteDialog extends PureComponent {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { requestInvite } from '../actions/RequestInvite';
+class RequestInviteDialog extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,6 +70,10 @@ export default class RequestInviteDialog extends PureComponent {
       confirmedEmail: text
     })
   }
+
+  onSend = () => {
+    this.props.requestInvite(this.state.fullName, this.state.email);
+  }
   
   render() {
     return (
@@ -92,10 +98,20 @@ export default class RequestInviteDialog extends PureComponent {
             errMsg={this.state.confirmEmailMsg}
           />
         </div>
-        <Button onClick={this.props.onSend}>
+        <Button onClick={this.onSend}>
           Send
         </Button>
       </Modal>
     )
   }
 }
+
+
+const mapStateToProps = state => ({
+  
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  requestInvite
+}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(RequestInviteDialog);
