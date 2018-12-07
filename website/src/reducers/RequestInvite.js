@@ -1,6 +1,6 @@
 import { ActionTypes } from '../actions/ActionTypes';
 
-const DIALOG_STATE = {
+export const DIALOG_STATE = {
   initial: -1,
   loading: 0,
   success: 1,
@@ -8,7 +8,7 @@ const DIALOG_STATE = {
 }
 const defaultState = {
   status: DIALOG_STATE.initial, 
-  extra: null
+  message: null
 }
 const RequestInvite = (state = defaultState, action) => {
   switch (action.type) {
@@ -17,13 +17,13 @@ const RequestInvite = (state = defaultState, action) => {
       return { status: DIALOG_STATE.loading };
     case ActionTypes.REQUEST_INVITE_SUCCESS:
       console.warn("IN success request");
-      return { status: DIALOG_STATE.success, extra: null };
+      return { status: DIALOG_STATE.success, message: null };
     case ActionTypes.REQUEST_INVITE_FAIL:
       console.warn("IN failed request");
-      return { status: DIALOG_STATE.error, extra: action.errorMsg }
+      return { status: DIALOG_STATE.error, message: action.errorMsg }
     case ActionTypes.RESET_DIALOG_STATUS:
       console.warn("IN reset dialog");
-      return { status: DIALOG_STATE.initial, extra: null };
+      return { status: DIALOG_STATE.initial, message: null };
     default:
       return state;
   }

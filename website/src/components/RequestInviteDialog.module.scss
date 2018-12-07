@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
 }
 
 .dialogTitle {
@@ -10,3 +9,9 @@
   margin-bottom: 40px;
 }
 
+.serverErrorMessage {
+  color: #FF424F;
+  padding: 12px 24px;
+  text-align: center;
+  line-height: 1.4;
+}

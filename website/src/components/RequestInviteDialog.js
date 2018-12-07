@@ -4,7 +4,10 @@ import { Button, Modal, Input } from '../basicComponents';
 import { validateEmail } from '../utils';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { requestInvite } from '../actions/RequestInvite';
+import { requestInvite, resetRequestInviteDialog } from '../actions/RequestInvite';
+import { getRequestDialogStatus } from '../selectors/RequestInvite';
+import { DIALOG_STATE } from '../reducers/RequestInvite';
+
 class RequestInviteDialog extends PureComponent {
   constructor(props) {
     super(props);
@@ -17,6 +20,11 @@ class RequestInviteDialog extends PureComponent {
       confirmEmailMsg: null
     }
   }
+
+  componentWillUnmount() {
+    this.props.resetRequestInviteDialog();
+  }
+
   onNameChange = (e) => {
     const text = e.target.value;
     let err;
@@ -75,32 +83,108 @@ class RequestInviteDialog extends PureComponent {
     this.props.requestInvite(this.state.fullName, this.state.email);
   }
   
+  renderInputDialog = () => 
+  (
+    <div className={styles.dialog}>
+      <div className={styles.dialogTitle}>
+        Request an invite
+      </div>
+      <Input
+        placeholder="Full Name"
+        onEmitUpdates={this.onNameChange}
+        errMsg={this.state.nameErrMsg}
+      />
+      <Input
+        placeholder="Email"
+        onEmitUpdates={this.onEmailChange}
+        errMsg={this.state.emailErrMsg}
+      />
+      <Input
+        placeholder="Confirm Email"
+        onEmitUpdates={this.onConfirmedEmailChange}
+        errMsg={this.state.confirmEmailMsg}
+      />
+    </div>
+  )
+  
+  renderSuccessDialog = () => 
+  (
+    <div className={styles.dialog}>
+      <div className={styles.dialogTitle}>
+        All Done!
+      </div>
+      You will be one of the first to experience Broccoli & Co. when we launch.
+    </div>
+  )
+
+  renderSendButton = () => {
+    const isDisabled = !this.validateAllInputs();
+    return (
+      <Button 
+        isDisabled={isDisabled}
+        onClick={this.onSend}>
+        Send
+      </Button>
+    )
+  }
+
+
+  renderSendingButton = () => (
+    <Button
+      isDisabled={true}
+    >
+      Sending, please wait...
+    </Button>
+  )
+
+  renderOKButton = () => (
+    <Button onClick={this.onClose}>
+      OK
+    </Button>
+  )
+
+  renderServerError = (msg) => (
+    <div className={styles.serverErrorMessage}>
+      {msg}
+    </div>
+  )
+  
+  validateAllInputs = () => {
+    if (this.state.fullName && this.state.email && this.state.confirmedEmail === this.state.email && 
+      !this.state.nameErrMsg && !this.state.emailErrMsg && !this.state.confirmEmailMsg) {
+        return true
+      }
+    return false;
+  }
   render() {
+    const status = this.props.statusObject.status;
+    const msg = this.props.statusObject.message;
+    let contentRenderer, buttonRenderer;
+    switch (status) {
+      case DIALOG_STATE.initial:
+        contentRenderer = this.renderInputDialog;
+        buttonRenderer = this.renderSendButton;
+        break;
+      case DIALOG_STATE.loading:
+        contentRenderer = this.renderInputDialog
+        buttonRenderer = this.renderSendingButton;
+        break;
+      case DIALOG_STATE.success:
+        contentRenderer = this.renderSuccessDialog
+        buttonRenderer = this.renderOKButton;
+        break;
+      case DIALOG_STATE.error:
+        contentRenderer = this.renderInputDialog;
+        buttonRenderer = this.renderSendButton
+        break;
+      default:
+        break;
+    }
     return (
       <Modal onClick={this.props.onClose}>
-        <div className={styles.dialog}>
-          <div className={styles.dialogTitle}>
-            Request an invite
-          </div>
-          <Input
-            placeholder="Full Name"
-            onEmitUpdates={this.onNameChange}
-            errMsg={this.state.nameErrMsg}
-          />
-          <Input
-            placeholder="Email"
-            onEmitUpdates={this.onEmailChange}
-            errMsg={this.state.emailErrMsg}
-          />
-          <Input
-            placeholder="Confirm Email"
-            onEmitUpdates={this.onConfirmedEmailChange}
-            errMsg={this.state.confirmEmailMsg}
-          />
-        </div>
-        <Button onClick={this.onSend}>
-          Send
-        </Button>
+        {contentRenderer && contentRenderer()}
+        {buttonRenderer && buttonRenderer()}
+        {msg && this.renderServerError(msg)}
       </Modal>
     )
   }
@@ -108,10 +192,11 @@ class RequestInviteDialog extends PureComponent {
 
 
 const mapStateToProps = state => ({
-  
+  statusObject: getRequestDialogStatus(state)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  requestInvite
+  requestInvite,
+  resetRequestInviteDialog
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(RequestInviteDialog);

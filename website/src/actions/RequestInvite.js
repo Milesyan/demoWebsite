@@ -21,6 +21,12 @@ function requestInviteFail(msg) {
   };
 }
 
+export function resetRequestInviteDialog() {
+  return {
+    type: ActionTypes.RESET_DIALOG_STATUS
+  }
+}
+
 export function requestInvite(fullName, email) {
   return async (dispatch) => {
     dispatch(requestInviteLoading());
