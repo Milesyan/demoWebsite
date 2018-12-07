@@ -12,6 +12,11 @@
   line-height: 1.4;
   text-align: center;
   margin-bottom: 12px;
+  margin-top: 0;
+  @media screen and (max-width: $phones) {
+    font-size: 24px;
+    padding: 0 20px;
+  }
 }
 
 .content {
@@ -19,6 +24,6 @@
   line-height: 1.4;
   text-align: center;
   @media screen and (max-width: $phones) {
-    background-color: red;
+    font-size: 18px;
   }
 }

@@ -5,7 +5,8 @@ export default class Footer extends PureComponent {
   render() {
     return (
       <div className={styles.container}>
-        Footer
+        <div style={{marginBottom: 4}}>Made with <span role="img" aria-label="emoji-love">❤️</span> in Melbourne</div>
+        <div>@ 2016 Broccoli & Co. All rights reserved.</div>
       </div>
     )
   }

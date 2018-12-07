@@ -5,7 +5,7 @@ export default class Input extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      shouldEmitUpdates: false,
+      shouldEmitUpdates: props.shouldEmitUpdates ? true : false,
     }
   }
 

@@ -101,6 +101,7 @@ class RequestInviteDialog extends PureComponent {
       />
       <Input
         placeholder="Confirm Email"
+        shouldEmitUpdates={true}
         onEmitUpdates={this.onConfirmedEmailChange}
         errMsg={this.state.confirmEmailMsg}
       />
@@ -113,7 +114,9 @@ class RequestInviteDialog extends PureComponent {
       <div className={styles.dialogTitle}>
         All Done!
       </div>
-      You will be one of the first to experience Broccoli & Co. when we launch.
+      <div style={{textAlign: 'center'}}>
+        You will be one of the first to experience Broccoli & Co. when we launch.
+      </div>
     </div>
   )
 
@@ -127,7 +130,6 @@ class RequestInviteDialog extends PureComponent {
       </Button>
     )
   }
-
 
   renderSendingButton = () => (
     <Button

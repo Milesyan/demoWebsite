@@ -1,3 +1,4 @@
+@import '../styles/base';
 .primaryBtn {
   padding: 12px 50px;
   display: block;
@@ -9,11 +10,23 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
   font-size: 18px;
   font-weight: bold;
-  background-color: #2ecc71;
+  background-color: #33b5e5;
   color: #ecf0f1;
+  @media screen and (max-width: $phones) {
+    font-size: 16px;
+    padding: 12px 36px;
+  }
+}
+
+.primaryBtn:hover {
+  background-color: #33a5f5
 }
 
 .disabledBtn {
-  background-color: #eff3f5;
+  background-color: #eff3f580;
   color: #a3a7b9;
+}
+
+.disabledBtn:hover {
+  background-color: #eff3f540;
 }

@@ -1,3 +1,4 @@
+@import '../styles/base';
 .container {
   position: fixed;
   top: 0;
@@ -9,4 +10,8 @@
   box-shadow: 0 6px 4px #777;
   padding-left: 10%;
   font-size: 24px;
+  @media screen and (max-width: $phones) {
+    height: 60px;
+    font-size: 20px;
+  }
 }
