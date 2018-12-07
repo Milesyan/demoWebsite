@@ -55,8 +55,8 @@ class RequestInviteDialog extends PureComponent {
       emailErrMsg: err || null,
       email: text
     }
-    if (!err) {
-      state = {...state, confirmEmailMsg: text === this.state.confirmedEmail}
+    if (!err && text == this.state.confirmedEmail) {
+      state = {...state, confirmEmailMsg: null}
     }
     this.setState(state);
   }
@@ -65,7 +65,7 @@ class RequestInviteDialog extends PureComponent {
     const text = e.target.value;
     let err;
     if (!text.length) {
-      err = 'Pleae input an Email address';
+      err = 'Please input an Email address';
     } else if (!validateEmail(text)) {
       err = 'Please input a valid Email address';
     } else if (text !== this.state.email) {
@@ -138,7 +138,7 @@ class RequestInviteDialog extends PureComponent {
   )
 
   renderOKButton = () => (
-    <Button onClick={this.onClose}>
+    <Button onClick={this.props.onClose}>
       OK
     </Button>
   )
@@ -156,10 +156,11 @@ class RequestInviteDialog extends PureComponent {
       }
     return false;
   }
+
   render() {
     const status = this.props.statusObject.status;
     const msg = this.props.statusObject.message;
-    let contentRenderer, buttonRenderer;
+    let contentRenderer, buttonRenderer, enableCloseModal = true;
     switch (status) {
       case DIALOG_STATE.initial:
         contentRenderer = this.renderInputDialog;
@@ -168,6 +169,7 @@ class RequestInviteDialog extends PureComponent {
       case DIALOG_STATE.loading:
         contentRenderer = this.renderInputDialog
         buttonRenderer = this.renderSendingButton;
+        enableCloseModal = false;
         break;
       case DIALOG_STATE.success:
         contentRenderer = this.renderSuccessDialog
@@ -181,7 +183,7 @@ class RequestInviteDialog extends PureComponent {
         break;
     }
     return (
-      <Modal onClick={this.props.onClose}>
+      <Modal onClick={ enableCloseModal ? this.props.onClose : null}>
         {contentRenderer && contentRenderer()}
         {buttonRenderer && buttonRenderer()}
         {msg && this.renderServerError(msg)}
