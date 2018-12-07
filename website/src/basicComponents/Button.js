@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
-import './Button.css';
+import styles from './Button.module.scss';
 
 export default class Button extends PureComponent {
   render() {
     return (
       <button
-        className="primary-btn"
+        className={styles.primaryBtn}
         onClick={this.props.onClick}>
         {this.props.children || 'Default Button Text'}
       </button>

@@ -1,16 +1,12 @@
-.request-dialog {
+.dialog {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 30px;
 }
 
-.request-dialog-title {
+.dialogTitle {
   font-size: 24px;
   margin-bottom: 40px;
 }
-.request-dialog-input {
-  width: 80%;
-  padding: 12px;
-  margin-bottom: 12px;
-}
+

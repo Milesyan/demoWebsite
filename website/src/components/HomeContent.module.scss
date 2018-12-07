@@ -1,9 +1,12 @@
-.home-content {
+@import '../styles/base';
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
 }
+
 .title {
   font-size: 48px;
   line-height: 1.4;
@@ -15,4 +18,7 @@
   font-size: 24px;
   line-height: 1.4;
   text-align: center;
+  @media screen and (max-width: $phones) {
+    background-color: red;
+  }
 }

@@ -1,13 +1,16 @@
-.modal-container {
+@import '../styles/base.scss';
+
+.container {
   position: fixed;
   top: 0;
   left: 0;
   width:100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
+  z-index: 10;
 }
 
-.modal-main {
+.main {
   position:fixed;
   background: white;
   width: 80%;
@@ -17,3 +20,4 @@
   left:50%;
   transform: translate(-50%,-50%);
 }
+

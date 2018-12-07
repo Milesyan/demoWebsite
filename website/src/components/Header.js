@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
-import './Header.css';
+import styles from './Header.module.scss';
 
 export default class Header extends PureComponent {
   render() {
     return (
-      <div className="header-container">
-        Header
+      <div className={styles.container}>
+        Broccoli & Co.
       </div>
     )
   }

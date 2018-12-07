@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
-import './Modal.css';
+import styles from './Modal.module.scss';
 
 export default class Modal extends PureComponent {
   render() {
     return (
       <div 
         onClick={this.props.onClick}
-        className="modal-container">
+        className={styles.container}>
         <div 
-          className="modal-main" 
+          className={styles.main}
           onClick={(e)=>{e.stopPropagation();}}
         >
           {this.props.children}

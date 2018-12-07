@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
-import './HomeContent.css';
-import { Button, RequestInviteDialog } from '.';
+import styles from './HomeContent.module.scss';
+import { RequestInviteDialog } from '.';
+import { Button } from '../basicComponents';
 
 
 export default class HomeContent extends PureComponent {
   constructor(props){
     super(props);
     this.state = {
-      showDialog: false
+      showDialog: true
     }
   }
 
@@ -29,11 +30,11 @@ export default class HomeContent extends PureComponent {
   }
   render() {
     return (
-      <div className="home-content">
-        <h1 className="title">
+      <div className={styles.container}>
+        <h1 className={styles.title}>
           A Better Way to enjoy every day.
         </h1>
-        <div className="content"> 
+        <div className={styles.content}> 
           Be the first to know when we launch.
         </div>
         <Button onClick={this.onRequestInviteClicked}>

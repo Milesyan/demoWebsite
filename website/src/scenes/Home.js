@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import { Header, Footer, HomeContent } from '../components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import './Home.css'
+import styles from './Home.module.scss';
 class Home extends PureComponent {
 
   render() {
     return (
-      <div className="container">
+      <div className={styles.container}>
         <Header/>
         <HomeContent/>
         <Footer/>
