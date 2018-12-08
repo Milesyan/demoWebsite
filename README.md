@@ -1,7 +1,12 @@
 ## Prerequisite
 
+### `brew install yarn`
+
 Install yarn if it is not installed
-using: `brew install yarn`
+
+### `yarn`
+
+Install node_modules
 
 ## Available Scripts
 
