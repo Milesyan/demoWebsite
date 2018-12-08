@@ -62,6 +62,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test-ut": "jest test.js",
+    "test-watch": "jest test.js --watch",
     "test-api": "jest test-api.js"
   },
   "jest": {
