@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Snapshot should match snapshot when button is disabled 1`] = `
+<button
+  className="primaryBtn disabledBtn"
+  onClick={null}
+>
+  Default Button Text
+</button>
+`;
+
+exports[`Button Snapshot should match snapshot when button is not disabled 1`] = `
+<button
+  className="primaryBtn"
+  onClick={[MockFunction]}
+>
+  Default Button Text
+</button>
+`;
+
+exports[`Button snapshots should match snapshot when button is disabled 1`] = `
+<button
+  className="primaryBtn disabledBtn"
+  onClick={null}
+>
+  Default Button Text
+</button>
+`;
+
+exports[`Button snapshots should match snapshot when button is not disabled 1`] = `
+<button
+  className="primaryBtn"
+  onClick={[MockFunction]}
+>
+  Default Button Text
+</button>
+`;
