@@ -2,12 +2,10 @@
 
 import { Button } from '../index';
 
-const mockOnClick = jest.fn();
-
 const setup = overrideProps => {
   const initProps = {
     isDisabled: false,
-    onClick: mockOnClick
+    onClick: jest.fn()
   };
   const props = { ...initProps, ...overrideProps};
   const wrapper = shallow(
@@ -33,7 +31,17 @@ describe('Button snapshots', () => {
 describe('Button functions', () => {
 
   it('should call onClick function when the button is not disabled.', () => {
-    const { wrapper } = setup();
+    const mockFn = jest.fn();
+    const { wrapper } = setup({onClick: mockFn});
+    wrapper.find('button').simulate('click');
+    expect(mockFn).toBeCalled();
+  });  
+
+  it('should call onClick function when the button is not disabled.', () => {
+    const mockFn = jest.fn();
+    const { wrapper } = setup({onClick: mockFn});
+    wrapper.find('button').simulate('click');
+    expect(mockFn).toBeCalled();
   });
   
 });
