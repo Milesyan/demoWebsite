@@ -1,4 +1,3 @@
-export const getRequestDialogStatus = state => ({
-  status: state.RequestInvite.status,
-  msg: state.RequestInvite.message
-});
+export const getRequestDialogStatus = state => state.RequestInvite.status;
+
+export const getRequestDialogMessage = state => state.RequestInvite.message;

@@ -5,7 +5,7 @@ import { validateEmail } from '../utils';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { requestInvite, resetRequestInviteDialog } from '../actions/RequestInvite';
-import { getRequestDialogStatus } from '../selectors/RequestInvite';
+import { getRequestDialogStatus, getRequestDialogMessage } from '../selectors/RequestInvite';
 import { DIALOG_STATE } from '../reducers/RequestInvite';
 
 class RequestInviteDialog extends PureComponent {
@@ -160,10 +160,8 @@ class RequestInviteDialog extends PureComponent {
   }
 
   render() {
-    const status = this.props.statusObject.status;
-    const msg = this.props.statusObject.message;
     let contentRenderer, buttonRenderer, enableCloseModal = true;
-    switch (status) {
+    switch (this.props.dialogStatus) {
       case DIALOG_STATE.initial:
         contentRenderer = this.renderInputDialog;
         buttonRenderer = this.renderSendButton;
@@ -188,7 +186,7 @@ class RequestInviteDialog extends PureComponent {
       <Modal onClick={ enableCloseModal ? this.props.onClose : null}>
         {contentRenderer && contentRenderer()}
         {buttonRenderer && buttonRenderer()}
-        {msg && this.renderServerError(msg)}
+        {this.props.dialogMessage && this.renderServerError(this.props.dialogMessage)}
       </Modal>
     )
   }
@@ -196,7 +194,8 @@ class RequestInviteDialog extends PureComponent {
 
 
 const mapStateToProps = state => ({
-  statusObject: getRequestDialogStatus(state)
+  dialogStatus: getRequestDialogStatus(state),
+  dialogMessage: getRequestDialogMessage(state)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
