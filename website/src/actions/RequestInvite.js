@@ -2,19 +2,19 @@ import ApiClient from '../network/ApiClient';
 import { ActionTypes } from './ActionTypes';
 import { HttpError, ServerError } from '../network/errors';
 
-function requestInviteLoading() {
+export function requestInviteLoading() {
   return {
     type: ActionTypes.REQUEST_INVITE_LOADING,
   };
 }
 
-function requestInviteSuccess() {
+export function requestInviteSuccess() {
   return {
     type: ActionTypes.REQUEST_INVITE_SUCCESS,
   };
 }
 
-function requestInviteFail(msg) {
+export function requestInviteFail(msg) {
   return {
     type: ActionTypes.REQUEST_INVITE_FAIL,
     errorMsg: msg
@@ -39,7 +39,7 @@ export function requestInvite(fullName, email) {
       }
     } catch (error) { 
       if (error instanceof ServerError) {
-        dispatch(requestInviteFail(error.message))
+        dispatch(requestInviteFail(error.message.errorMessage || "Server Error with mo messsage"))
       } else {
         dispatch(requestInviteFail("Unkown Error"));
         throw error;

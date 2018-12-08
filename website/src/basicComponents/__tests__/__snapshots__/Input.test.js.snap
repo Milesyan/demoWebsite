@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input snapshots should match snapshot with error message 1`] = `
+<div
+  className="container"
+>
+  <input
+    className="dialogInput errorInput"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="Place Holder"
+  />
+  <div
+    className="errorMsg"
+  >
+    Example Error
+  </div>
+</div>
+`;
+
+exports[`Input snapshots should match snapshot with placeholder 1`] = `
+<div
+  className="container"
+>
+  <input
+    className="dialogInput"
+    onBlur={[Function]}
+    onChange={[Function]}
+    placeholder="Place Holder"
+  />
+</div>
+`;

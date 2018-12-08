@@ -8,8 +8,25 @@ import { requestInvite, resetRequestInviteDialog } from '../actions/RequestInvit
 import { getRequestDialogStatus, getRequestDialogMessage } from '../selectors/RequestInvite';
 import { DIALOG_STATE } from '../reducers/RequestInvite';
 
-class RequestInviteDialog extends PureComponent {
-  constructor(props) {
+type Props = {
+  dialogStatus: number,
+  dialogMessage: ?String,
+  onClose: Function,
+  resetRequestInviteDialog: Function,
+  requestInvite: Function
+}
+
+type State = {
+  fullName: String,
+  email: String,
+  confirmedEmail: String,
+  nameErrMsg: ?String,
+  emailErrMsg: ?String,
+  confirmEmailMsg: ?String,
+}
+
+export class RequestInviteDialog extends PureComponent<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       fullName: '',
@@ -25,7 +42,7 @@ class RequestInviteDialog extends PureComponent {
     this.props.resetRequestInviteDialog();
   }
 
-  onNameChange = (e) => {
+  onNameChanged = (e) => {
     const text = e.target.value;
     let err;
     if (!text.length) {
@@ -41,7 +58,7 @@ class RequestInviteDialog extends PureComponent {
     })
   }
 
-  onEmailChange = (e) => {
+  onEmailChanged = (e) => {
     const text = e.target.value;
     let err;
     if (!text.length) {
@@ -61,7 +78,7 @@ class RequestInviteDialog extends PureComponent {
     this.setState(state);
   }
 
-  onConfirmedEmailChange = (e) => {
+  onConfirmedEmailChanged = (e) => {
     const text = e.target.value;
     let err;
     if (!text.length) {
@@ -91,18 +108,18 @@ class RequestInviteDialog extends PureComponent {
       </div>
       <Input
         placeholder="Full Name"
-        onEmitUpdates={this.onNameChange}
+        onEmitUpdates={this.onNameChanged}
         errMsg={this.state.nameErrMsg}
       />
       <Input
         placeholder="Email"
-        onEmitUpdates={this.onEmailChange}
+        onEmitUpdates={this.onEmailChanged}
         errMsg={this.state.emailErrMsg}
       />
       <Input
         placeholder="Confirm Email"
         shouldEmitUpdates={true}
-        onEmitUpdates={this.onConfirmedEmailChange}
+        onEmitUpdates={this.onConfirmedEmailChanged}
         errMsg={this.state.confirmEmailMsg}
       />
     </div>
@@ -182,6 +199,7 @@ class RequestInviteDialog extends PureComponent {
       default:
         break;
     }
+
     return (
       <Modal onClick={ enableCloseModal ? this.props.onClose : null}>
         {contentRenderer && contentRenderer()}

@@ -3,8 +3,13 @@ import styles from './HomeContent.module.scss';
 import { RequestInviteDialog } from '.';
 import { Button } from '../basicComponents';
 
+type Props = {
+}
 
-export default class HomeContent extends PureComponent {
+type State = {
+  showDialog: Boolean
+}
+export default class HomeContent extends PureComponent<Props, State> {
   constructor(props){
     super(props);
     this.state = {
@@ -15,11 +20,6 @@ export default class HomeContent extends PureComponent {
   onRequestInviteClicked = () => {
     this.setState({
       showDialog: true
-    })
-  }
-  onDialogSendClicked = () => {
-    this.setState({
-      showDialog: false
     })
   }
 
@@ -42,8 +42,7 @@ export default class HomeContent extends PureComponent {
         </Button>
        {this.state.showDialog && 
         <RequestInviteDialog
-          onClose={this.onDialogSendClicked}
-          onSend={this.onDialogCloseClicked}
+          onClose={this.onDialogCloseClicked}
         />}
       </div>
     )

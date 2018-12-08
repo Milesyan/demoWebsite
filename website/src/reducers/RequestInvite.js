@@ -13,16 +13,12 @@ const defaultState = {
 const RequestInvite = (state = defaultState, action) => {
   switch (action.type) {
     case ActionTypes.REQUEST_INVITE_LOADING:
-      console.warn("IN loading");
-      return { status: DIALOG_STATE.loading };
+      return { status: DIALOG_STATE.loading, message: null };
     case ActionTypes.REQUEST_INVITE_SUCCESS:
-      console.warn("IN success request");
       return { status: DIALOG_STATE.success, message: null };
     case ActionTypes.REQUEST_INVITE_FAIL:
-      console.warn("IN failed request");
       return { status: DIALOG_STATE.error, message: action.errorMsg }
     case ActionTypes.RESET_DIALOG_STATUS:
-      console.warn("IN reset dialog");
       return { status: DIALOG_STATE.initial, message: null };
     default:
       return state;

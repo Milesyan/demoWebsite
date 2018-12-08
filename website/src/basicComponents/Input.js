@@ -1,7 +1,17 @@
 import React, { PureComponent } from 'react';
 import styles from './Input.module.scss';
 
-export default class Input extends PureComponent {
+type Props = {
+  shouldEmitUpdates: ?Boolean,
+  onEmitUpdates: Function,
+  errMsg: ?String,
+  placeholder: ?String,
+}
+
+type State = {
+  shouldEmitUpdates: Boolean
+}
+export default class Input extends PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,8 +42,8 @@ export default class Input extends PureComponent {
         {
           this.props.errMsg && 
           <div className={styles.errorMsg}>
-            {this.props.errMsg || 'Error'}
-           </div>
+            {this.props.errMsg}
+          </div>
         }
       </div>
     )

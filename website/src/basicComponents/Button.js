@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
 import styles from './Button.module.scss';
 
-export default class Button extends PureComponent {
+type Props = {
+  isDisabled: ?Boolean,
+  onClick: Function
+}
+export default class Button extends PureComponent<Props> {
   
   render() {
     return (

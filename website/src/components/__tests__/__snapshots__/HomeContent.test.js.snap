@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeContent snapshots should match snapshot 1`] = `
+<div
+  className="container"
+>
+  <h1
+    className="title"
+  >
+    A Better Way to enjoy every day.
+  </h1>
+  <div
+    className="content"
+  >
+    Be the first to know when we launch.
+  </div>
+  <Button
+    onClick={[Function]}
+  >
+    Request an invite
+  </Button>
+</div>
+`;
+
+exports[`HomeContent snapshots should match snapshot when there is a dialog 1`] = `
+<div
+  className="container"
+>
+  <h1
+    className="title"
+  >
+    A Better Way to enjoy every day.
+  </h1>
+  <div
+    className="content"
+  >
+    Be the first to know when we launch.
+  </div>
+  <Button
+    onClick={[Function]}
+  >
+    Request an invite
+  </Button>
+  <Connect(RequestInviteDialog)
+    onClose={[Function]}
+  />
+</div>
+`;

@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react';
 import styles from './Modal.module.scss';
 
+type Props = {
+  onClick: Function,
+  children: any
+}
 export default class Modal extends PureComponent {
   render() {
     return (

@@ -61,7 +61,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test-ut": "jest test.js",
+    "test-api": "jest test-api.js"
   },
   "jest": {
     "collectCoverageFrom": [

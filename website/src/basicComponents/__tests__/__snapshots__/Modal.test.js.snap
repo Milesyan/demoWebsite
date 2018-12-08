@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal snapshots should match snapshot when Modal is not disabled 1`] = `
+<div
+  className="container"
+  onClick={[MockFunction]}
+>
+  <div
+    className="main"
+    onClick={[Function]}
+  >
+    <div>
+      TEST CHILDREN CONTENT
+    </div>
+  </div>
+</div>
+`;
