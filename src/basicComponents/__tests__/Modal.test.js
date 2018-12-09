@@ -30,7 +30,7 @@ describe('Modal functions', () => {
 
   it('should call the onClick function on the outside mask', () => {
     const { wrapper, props } = setup();
-    wrapper.simulate('click')
+    wrapper.children().simulate('click')
     expect(props.onClick).toBeCalled();
   });
   

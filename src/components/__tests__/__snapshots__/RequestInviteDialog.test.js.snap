@@ -32,6 +32,11 @@ exports[`RequestInviteDialog functions should have a disabled send button as def
   <Button
     isDisabled={false}
     onClick={[Function]}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
   >
     Send
   </Button>
@@ -180,6 +185,11 @@ exports[`RequestInviteDialog snapshots should match snapshot in error status wit
   <Button
     isDisabled={true}
     onClick={[Function]}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
   >
     Send
   </Button>
@@ -223,6 +233,11 @@ exports[`RequestInviteDialog snapshots should match snapshot in inital status 1`
   <Button
     isDisabled={true}
     onClick={[Function]}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
   >
     Send
   </Button>
@@ -260,6 +275,11 @@ exports[`RequestInviteDialog snapshots should match snapshot in loading status 1
   </div>
   <Button
     isDisabled={true}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
   >
     Sending, please wait...
   </Button>
@@ -279,17 +299,18 @@ exports[`RequestInviteDialog snapshots should match snapshot in success status 1
       All Done!
     </div>
     <div
-      style={
-        Object {
-          "textAlign": "center",
-        }
-      }
+      className="successMsg"
     >
       You will be one of the first to experience Broccoli & Co. when we launch.
     </div>
   </div>
   <Button
     onClick={[MockFunction]}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
   >
     OK
   </Button>
