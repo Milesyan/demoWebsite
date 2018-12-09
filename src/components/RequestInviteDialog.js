@@ -72,7 +72,7 @@ export class RequestInviteDialog extends PureComponent<Props, State> {
       emailErrMsg: err || null,
       email: text
     }
-    if (!err && text == this.state.confirmedEmail) {
+    if (!err && text === this.state.confirmedEmail) {
       state = {...state, confirmEmailMsg: null}
     }
     this.setState(state);
@@ -131,7 +131,7 @@ export class RequestInviteDialog extends PureComponent<Props, State> {
       <div className={styles.dialogTitle}>
         All Done!
       </div>
-      <div style={{textAlign: 'center'}}>
+      <div className={styles.successMsg}>
         You will be one of the first to experience Broccoli & Co. when we launch.
       </div>
     </div>
@@ -141,6 +141,7 @@ export class RequestInviteDialog extends PureComponent<Props, State> {
     const isDisabled = !this.validateAllInputs();
     return (
       <Button 
+        style={{width: '100%'}}
         isDisabled={isDisabled}
         onClick={this.onSend}>
         Send
@@ -150,6 +151,7 @@ export class RequestInviteDialog extends PureComponent<Props, State> {
 
   renderSendingButton = () => (
     <Button
+      style={{width: '100%'}}
       isDisabled={true}
     >
       Sending, please wait...
@@ -157,7 +159,9 @@ export class RequestInviteDialog extends PureComponent<Props, State> {
   )
 
   renderOKButton = () => (
-    <Button onClick={this.props.onClose}>
+    <Button
+      style={{width: '100%'}}
+      onClick={this.props.onClose}>
       OK
     </Button>
   )
