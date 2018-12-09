@@ -5,7 +5,7 @@ type Props = {
   onClick: Function,
   children: any
 }
-export default class Modal extends PureComponent {
+export default class Modal extends PureComponent<Props> {
   render() {
     return (
       <div 
