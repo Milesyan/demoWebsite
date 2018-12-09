@@ -4,25 +4,25 @@ exports[`Request invite actions should dispatch invite success action if reqeust
 
 exports[`Request invite actions should match snapshot for pure object actions 1`] = `
 Object {
-  "type": "REQUEST_INVITE_LOADING",
+  "type": Symbol(),
 }
 `;
 
 exports[`Request invite actions should match snapshot for pure object actions 2`] = `
 Object {
-  "type": "REQUEST_INVITE_SUCCESS",
+  "type": Symbol(),
 }
 `;
 
 exports[`Request invite actions should match snapshot for pure object actions 3`] = `
 Object {
   "errorMsg": "FAIL MESSAGE",
-  "type": "REQUEST_INVITE_FAIL",
+  "type": Symbol(),
 }
 `;
 
 exports[`Request invite actions should match snapshot for pure object actions 4`] = `
 Object {
-  "type": "RESET_DIALOG_STATUS",
+  "type": Symbol(),
 }
 `;

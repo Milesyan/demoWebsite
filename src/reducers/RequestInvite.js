@@ -1,10 +1,10 @@
 import { ActionTypes } from '../actions/ActionTypes';
 
 export const DIALOG_STATE = {
-  initial: -1,
-  loading: 0,
-  success: 1,
-  error: 2
+  initial: Symbol(),
+  loading: Symbol(),
+  success: Symbol(),
+  error: Symbol()
 }
 const defaultState = {
   status: DIALOG_STATE.initial, 
