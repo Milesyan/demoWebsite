@@ -2,31 +2,26 @@ import React, { PureComponent } from 'react';
 import styles from './HomeContent.module.scss';
 import { RequestInviteDialog } from '.';
 import { Button } from '../basicComponents';
+import { connect } from 'react-redux';
+import { showRequestInviteDialog, dismissRequestInviteDialog } from '../actions/Home';
+import { bindActionCreators } from 'redux';
+import { getShowRequestInviteDialogStatus } from '../selectors/Home';
 
 type Props = {
+  showDialog: boolean,
+  showRequestInviteDialog: typeof showRequestInviteDialog,
+  dismissRequestInviteDialog: typeof dismissRequestInviteDialog,
 }
 
 type State = {
-  showDialog: Boolean
 }
-export default class HomeContent extends PureComponent<Props, State> {
-  constructor(props){
-    super(props);
-    this.state = {
-      showDialog: false
-    }
-  }
-
+export class HomeContent extends PureComponent<Props, State> {
   onRequestInviteClicked = () => {
-    this.setState({
-      showDialog: true
-    })
+    this.props.showRequestInviteDialog();
   }
 
   onDialogCloseClicked = () => {
-    this.setState({
-      showDialog: false
-    })
+    this.props.dismissRequestInviteDialog();
   }
   render() {
     return (
@@ -40,7 +35,7 @@ export default class HomeContent extends PureComponent<Props, State> {
         <Button onClick={this.onRequestInviteClicked}>
           Request an invite
         </Button>
-       {this.state.showDialog && 
+       {this.props.showDialog && 
         <RequestInviteDialog
           onClose={this.onDialogCloseClicked}
         />}
@@ -48,3 +43,14 @@ export default class HomeContent extends PureComponent<Props, State> {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  showDialog: getShowRequestInviteDialogStatus(state)
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  showRequestInviteDialog,
+  dismissRequestInviteDialog
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContent);

@@ -214,7 +214,6 @@ export class RequestInviteDialog extends PureComponent<Props, State> {
   }
 }
 
-
 const mapStateToProps = state => ({
   dialogStatus: getRequestDialogStatus(state),
   dialogMessage: getRequestDialogMessage(state)
