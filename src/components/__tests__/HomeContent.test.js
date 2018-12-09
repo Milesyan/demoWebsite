@@ -1,9 +1,12 @@
 /* eslint-disable no-undef */ /*eslint-disable react/react-in-jsx-scope*/
 
-import { HomeContent } from '../index';
+import { HomeContent } from '../HomeContent';
 
 const setup = overrideProps => {
   const initProps = {
+    showDialog: false,
+    showRequestInviteDialog: jest.fn(),
+    dismissRequestInviteDialog: jest.fn()
   };
   const props = { ...initProps, ...overrideProps};
   const wrapper = shallow(
@@ -20,10 +23,7 @@ describe('HomeContent snapshots', () => {
   });
 
   it('should match snapshot when there is a dialog', () => {
-    const { wrapper } = setup();
-    wrapper.setState({
-      showDialog: true
-    });
+    const { wrapper } = setup({showDialog: true});
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -31,18 +31,16 @@ describe('HomeContent snapshots', () => {
 
 describe('HomeContent functions', () => {
 
-  it('should set showDialog to true when request an invite Button is clicked', () => {
-    const { wrapper } = setup();
+  it('should dispatch showRequestInviteDialog action when request an invite Button is clicked', () => {
+    const { wrapper, props } = setup();
     wrapper.find('Button').simulate('click');
-    expect(wrapper.state().showDialog).toBe(true);
+    expect(props.showRequestInviteDialog).toBeCalled()
   });
 
-  it('should set showDialog to false when showDialog was true and dialog onClose is triggered', () => {
-    const { wrapper } = setup();
-    wrapper.setState({showDialog: true});
-    expect(wrapper.state().showDialog).toBe(true);
+  it('should dispatch dismissRequestInviteDialog action when showDialog was true and dialog onClose is triggered', () => {
+    const { wrapper, props } = setup({showDialog: true});
     wrapper.find('Connect(RequestInviteDialog)').simulate('close');
-    expect(wrapper.state().showDialog).toBe(false);
+    expect(props.dismissRequestInviteDialog).toBeCalled();
   });
   
 });

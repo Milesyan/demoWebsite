@@ -5,7 +5,7 @@ exports[`Home Snapshot should match snapshot 1`] = `
   className="container"
 >
   <Header />
-  <HomeContent />
+  <Connect(HomeContent) />
   <Footer />
 </div>
 `;
