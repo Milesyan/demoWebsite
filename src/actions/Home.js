@@ -1,13 +1,19 @@
 import { ActionTypes } from './ActionTypes';
 
-export function showRequestInviteDialog() {
+export function setHomeStatusPreview() {
   return {
-    type: ActionTypes.HOME_SHOW_REQUEST_INVITE_DIALOG,
+    type: ActionTypes.SET_HOME_STATUS_PREVIEW,
   };
 }
 
-export function dismissRequestInviteDialog() {
+export function setHomeStatusProcess() {
   return {
-    type: ActionTypes.HOME_DISMISS_REQUEST_INVITE_DIALOG,
+    type: ActionTypes.SET_HOME_STATUS_PROCESS,
+  };
+}
+
+export function showRequestInviteDone() {
+  return {
+    type: ActionTypes.SET_HOME_STATUS_DONE,
   };
 }

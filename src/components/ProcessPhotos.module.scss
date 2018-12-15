@@ -1,0 +1,38 @@
+@import '../styles/base';
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.photos {
+  flex:1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
+.title {
+  font-size: 48px;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 12px;
+  margin-top: 0;
+  @media screen and (max-width: $phones) {
+    font-size: 24px;
+    padding: 0 20px;
+  }
+}
+
+.content {
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+  @media screen and (max-width: $phones) {
+    font-size: 18px;
+  }
+}
