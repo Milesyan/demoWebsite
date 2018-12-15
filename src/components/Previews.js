@@ -4,6 +4,7 @@ import { RequestInviteDialog } from '.';
 import { Button } from '../basicComponents';
 import { connect } from 'react-redux';
 import { updateImageInfo } from '../actions/Photos';
+import { setHomeStatusProcess } from '../actions/Home';
 import { bindActionCreators } from 'redux';
 import { getPhotos } from '../selectors/Photos';
 import domtoimage from 'dom-to-image';
@@ -19,11 +20,21 @@ type Props = {
 type State = {
 }
 export class Previews extends Component<Props, State> {
+  componentDidMount() {
+    //DEBUG
+    setTimeout(() => {
+      this.processPhotos();
+    }, 1000);
+  }
   onDownloadPDF = () => {
     domtoimage.toBlob(document.getElementById('example'), {width: 2480, height: 3354})
       .then(blob=> {
         saveAs(blob, 'my-node.jpg');
       })
+  }
+
+  processPhotos = () => {
+    this.props.setHomeStatusProcess()
   }
 
   onImagePreviewLoad = (...args) => {
@@ -44,8 +55,8 @@ export class Previews extends Component<Props, State> {
   render() {
     return (
       <div className={styles.container} id="example">
-        <Button onClick={this.onDownloadPDF}>
-          Processing
+        <Button onClick={this.processPhotos}>
+          Process Photos
         </Button>
         <div className={styles.photos}>
           {
@@ -65,7 +76,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  updateImageInfo
+  updateImageInfo,
+  setHomeStatusProcess
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Previews);

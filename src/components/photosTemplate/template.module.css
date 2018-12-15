@@ -1,0 +1,21 @@
+.container {
+  width: calc(2480px);
+  height: calc(3354px);
+  background-color: red;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.oneHorizontalImgWithText {
+  width: calc(1934px);
+  top: calc(1044px);
+  left: calc(274px);
+  position: absolute;
+}
+
+
+.oneVerticalImgWithText {
+  width: calc(1281px);
+  margin: auto;
+  position: absolute;
+}

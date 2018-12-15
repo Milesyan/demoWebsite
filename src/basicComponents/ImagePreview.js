@@ -19,7 +19,7 @@ export default class ImagePreview extends Component<Props> {
       return;
     }
     if (img.height && img.width) {
-      this.props.onLoad(img.height, img.width);
+      this.props.onLoad(img.width, img.height);
     } else {
       setTimeout(() => {
         this.getImageData(img);

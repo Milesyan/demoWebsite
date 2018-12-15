@@ -15,7 +15,17 @@
   flex-direction: row;
   flex-wrap: wrap;
   background-color: #fff;
+  zoom: 0.1;
+
 }
+
+.photoGroup {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
 .title {
   font-size: 48px;
   line-height: 1.4;
