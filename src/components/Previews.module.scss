@@ -1,12 +1,21 @@
 @import '../styles/base';
 .container {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
 }
 
+.photos {
+  flex:1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
 .title {
   font-size: 48px;
   line-height: 1.4;

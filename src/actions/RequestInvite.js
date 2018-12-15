@@ -1,6 +1,6 @@
 import ApiClient from '../network/ApiClient';
 import { ActionTypes } from './ActionTypes';
-import { HttpError, ServerError } from '../network/errors';
+import { ServerError } from '../network/errors';
 
 export function requestInviteLoading() {
   return {

@@ -1,13 +1,11 @@
 @import '../styles/base';
 .container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+
   height: 88px;
   display: flex;
   align-items: center;
   box-shadow: 0 4px 10px #777;
+  margin-bottom: 4px;
   padding-left: 10%;
   font-size: 24px;
   @media screen and (max-width: $phones) {
