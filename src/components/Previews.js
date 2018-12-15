@@ -38,6 +38,7 @@ export class Previews extends Component<Props, State> {
         key={photoObj.url}
         onLoad={this.onImagePreviewLoad.bind(this, dt, photoObj.url)}
         photo={photoObj}
+        date={dt}
       />
     ))
   }

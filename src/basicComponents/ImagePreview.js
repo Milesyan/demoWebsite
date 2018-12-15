@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 
 type Props = {
   photo: Object,
-  onLoad: Function
+  onLoad: Function,
+  date: String
 }
 export default class ImagePreview extends Component<Props> {
   componentDidMount() {
@@ -28,16 +29,20 @@ export default class ImagePreview extends Component<Props> {
   }
   
   render() {
-    console.warn(this.props.photo.width);
+    const loading = !this.props.photo.width || !this.props.photo.height;
     return (
       <div>
         <img
-          style={{ height: 100, width: 100, objectFit: 'contain', backgroundColor: '#eee'}}
-          alt="nothing" src={this.props.photo.url}/>
-        <div>
-          DEBUG {this.props.photo.width}
-          {this.props.photo.height}
-        </div>
+          style={{ height: 100, width: 100, margin: 10, objectFit: 'contain', backgroundColor: '#eee'}}
+          alt="nothing" src={this.props.photo.url}
+        />
+        {
+          loading ? <div> Loading ...</div> :
+          <div style={{fontSize: 14, display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
+            <div>{this.props.date}</div>
+            <div>{this.props.photo.width}/{this.props.photo.height}</div>
+          </div>
+        }
       </div>
     )
   }

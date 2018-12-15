@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 
 const Header = () => (
   <div className={styles.container}>
-    Broccoli & Co.
+    Photo Book
   </div>
 )
 

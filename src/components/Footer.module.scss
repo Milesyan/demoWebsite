@@ -1,5 +1,7 @@
 @import '../styles/base';
 .container {
+  display: fixed;
+  bottom: 0;
   height: 100px;
   background: #eee;
   display: flex;
