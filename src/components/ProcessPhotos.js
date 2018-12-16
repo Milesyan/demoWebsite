@@ -38,21 +38,33 @@ export class ProcessPhotos extends Component<Props, State> {
     this.props.updateImageInfo && this.props.updateImageInfo(...args);
   }
 
+  _pushReactElementToRes = (elements, res, mode, text=null) => {
+    if (!elements || !elements.length) {
+      return;
+    }
+    const key = elements.map(e=>e.id).reduce((p,v)=> p + '-' + v, '')
+    res.push(<PhotobookPage key={key} photos={elements} mode={mode} text={text}/>)
+  }
+
   groupPhotos = (posts) => {
     const res = [];
     for (const post of posts) {
       const oneDayPhotos = post.photoEntities;
       const horizontals = oneDayPhotos.filter(p=> p.width > p.height);
       const verticals = oneDayPhotos.filter(p=>p.width <= p.height);
-      if (horizontals.length) {
-        res.push(<PhotobookPage key={horizontals[0].url} photos={horizontals} mode={'horizontal'}/>)
-      } 
-      if (verticals.length) {
-        res.push(<PhotobookPage key={verticals[0].url} photos={verticals} mode={'vertical'}/>)
+      const text = post.text;
+      const firstPhotomode = oneDayPhotos[0].width > oneDayPhotos[0].height ? Symbol.for('horizontal') : Symbol.for('vertical');
+      if (firstPhotomode === Symbol.for('horizontal')) {
+        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), text)
+        this._pushReactElementToRes(verticals, res, Symbol.for('vertical'))
+      } else {
+        this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), text)
+        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'))
       }
     }
     return this.groupByEveryTwo(res);
   }
+
 
   groupByEveryTwo = (pages) => {
     let group = [];

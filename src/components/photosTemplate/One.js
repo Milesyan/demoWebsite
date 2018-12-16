@@ -13,13 +13,13 @@ export default class One extends Component<Props> {
   render() {
     const photo = this.props.photos[0];
     const mode = this.props.mode;
-    console.warn(mode);
-    const className = mode === 'horizontal' ? styles.oneHorizontalImgWithText : styles.oneVerticalImgWithText;
+    const className = mode === Symbol.for('horizontal') ? styles.oneHorizontalImgWithText : styles.oneVerticalImgWithText;
     return (
-      <div className={styles.container} id='test1'>
+      <div className={styles.container}>
         <img
           className={className}
-          alt="nothing" src={photo.url}
+          alt="nothing" 
+          src={photo.url}
         />
         <div>
           DEBUG {photo.width}/{photo.height}  {mode}

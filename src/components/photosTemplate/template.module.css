@@ -1,7 +1,7 @@
 .container {
   width: calc(2480px);
   height: calc(3354px);
-  background-color: red;
+  background-color: white;
   margin-bottom: 20px;
   position: relative;
 }
@@ -16,6 +16,10 @@
 
 .oneVerticalImgWithText {
   width: calc(1281px);
-  margin: auto;
+  top: 505px;
+  left: 271px;
+  width: 1933px;
+  height: 2268px;
   position: absolute;
+  object-fit: contain;
 }
