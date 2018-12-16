@@ -2,10 +2,10 @@ import ApiClient from '../network/ApiClient';
 import { ActionTypes } from './ActionTypes';
 import { ServerError } from '../network/errors';
 
-export function updateImageInfo(dateStr, url, width, height) {
+export function updateImageInfo(id, width, height) {
   return {
     type: ActionTypes.UPDATE_IMAGE_INFO,
-    payload: {dateStr, url, width, height}
+    payload: {id, width, height}
   };
 }
 

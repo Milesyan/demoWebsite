@@ -13,7 +13,7 @@ import ImagePreview from '../basicComponents/ImagePreview';
 
 
 type Props = {
-  showDialog: boolean,
+  photos: Array<*>,
   updateImageInfo: typeof updateImageInfo
 }
 
@@ -37,22 +37,19 @@ export class Previews extends Component<Props, State> {
     this.props.setHomeStatusProcess()
   }
 
-  onImagePreviewLoad = (...args) => {
-    this.props.updateImageInfo && this.props.updateImageInfo(...args);
+  onImagePreviewLoad = (id, width, height) => {
+    this.props.updateImageInfo && this.props.updateImageInfo(id, width, height);
   }
 
-  renderPhotosForDate = (dt)=> {
-    const photosForDay = this.props.photos[dt];
-    return photosForDay.map(photoObj=>(
-      <ImagePreview
-        key={photoObj.url}
-        onLoad={this.onImagePreviewLoad.bind(this, dt, photoObj.url)}
-        photo={photoObj}
-        date={dt}
-      />
-    ))
+  renderPhoto = (photo)=> {
+    return (<ImagePreview
+        key={photo.id}
+        onLoad={this.onImagePreviewLoad.bind(this, photo.id)}
+        photo={photo}
+      />)
   }
   render() {
+    const photos = Object.values(this.props.photos);
     return (
       <div className={styles.container} id="example">
         <Button onClick={this.processPhotos}>
@@ -60,8 +57,8 @@ export class Previews extends Component<Props, State> {
         </Button>
         <div className={styles.photos}>
           {
-            Object.keys(this.props.photos).map(dt => (
-              this.renderPhotosForDate(dt)
+            photos.map(photo=>(
+              this.renderPhoto(photo)
             ))
           }
         </div>

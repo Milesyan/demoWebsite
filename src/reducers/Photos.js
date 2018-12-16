@@ -1,19 +1,20 @@
 import { ActionTypes } from '../actions/ActionTypes';
-import { photos } from './__mock__/photos';
+import { photoPosts, photos } from './__mock__/photos';
 import produce from "immer"
 
 
 const defaultState = {
-  photos
+  photoPosts,
+  photoEntities: photos
 }
 const Home = (state = defaultState, action) => {
   switch (action.type) {
     case ActionTypes.UPDATE_IMAGE_INFO:
-      const { dateStr, url, width, height} = action.payload;
+      const { id, width, height} = action.payload;
       const nextState = produce(state, draftState => {
-        let obj = draftState.photos[dateStr].find(obj => obj.url===url);
-        obj.width = width;
-        obj.height = height;
+        let photo = draftState.photoEntities[id]
+        photo.width = width;
+        photo.height = height;
       })
       return nextState;
     default:

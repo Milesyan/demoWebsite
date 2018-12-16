@@ -5,14 +5,14 @@ import { Button } from '../basicComponents';
 import { connect } from 'react-redux';
 import { updateImageInfo } from '../actions/Photos';
 import { bindActionCreators } from 'redux';
-import { getPhotos } from '../selectors/Photos';
+import { getPostsWithPhotos } from '../selectors/Photos';
 import domtoimage from 'dom-to-image';
 import saveAs from 'file-saver';
 import ImagePreview from '../basicComponents/ImagePreview';
 
 
 type Props = {
-  showDialog: boolean,
+  posts: Array<*>,
   updateImageInfo: typeof updateImageInfo
 }
 
@@ -29,7 +29,7 @@ export class ProcessPhotos extends Component<Props, State> {
   }
 
   saveOnePhotoPage = (node, idx) => {
-    domtoimage.toBlob(node, {width: 2480, height: 3354, style:{zoom: 1}})
+    domtoimage.toBlob(node, {width: 2480 * 2, height: 3354, style:{zoom: 1}})
       .then(blob=> {
         saveAs(blob, `photobook_${idx+1}.jpg`);
       })
@@ -38,22 +38,10 @@ export class ProcessPhotos extends Component<Props, State> {
     this.props.updateImageInfo && this.props.updateImageInfo(...args);
   }
 
-  renderPhotosForDate = (dt)=> {
-    const photosForDay = this.props.photos[dt];
-    return photosForDay.map(photoObj=>(
-      <ImagePreview
-        key={photoObj.url}
-        onLoad={this.onImagePreviewLoad.bind(this, dt, photoObj.url)}
-        photo={photoObj}
-        date={dt}
-      />
-    ))
-  }
-  groupPhotos = (photos) => {
+  groupPhotos = (posts) => {
     const res = [];
-    const dates = Object.keys(photos).sort((a,b)=>a>b);
-    for (const dt of dates) {
-      const oneDayPhotos = photos[dt];
+    for (const post of posts) {
+      const oneDayPhotos = post.photoEntities;
       const horizontals = oneDayPhotos.filter(p=> p.width > p.height);
       const verticals = oneDayPhotos.filter(p=>p.width <= p.height);
       if (horizontals.length) {
@@ -62,7 +50,6 @@ export class ProcessPhotos extends Component<Props, State> {
       if (verticals.length) {
         res.push(<PhotobookPage key={verticals[0].url} photos={verticals} mode={'vertical'}/>)
       }
-      // break;//debug
     }
     return this.groupByEveryTwo(res);
   }
@@ -81,7 +68,7 @@ export class ProcessPhotos extends Component<Props, State> {
 
 
   render() {
-    const photoGroups = this.groupPhotos(this.props.photos)
+    const photoGroups = this.groupPhotos(this.props.posts)
     return (
       <div className={styles.container}>
         <Button onClick={this.onDownloadPDF}>
@@ -104,7 +91,7 @@ export class ProcessPhotos extends Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-  photos: getPhotos(state)
+  posts: getPostsWithPhotos(state)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
