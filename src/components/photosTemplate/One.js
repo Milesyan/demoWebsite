@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './template.module.css';
+import styles from './template.module.scss';
 type Props = {
   photo: Object,
   mode: string,

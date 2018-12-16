@@ -1,0 +1,54 @@
+.container {
+  width: calc(2480px);
+  height: calc(3354px);
+  background-color: white;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.oneHorizontalImgWithText {
+  width: calc(1934px);
+  top: calc(1044px);
+  left: calc(274px);
+  position: absolute;
+}
+
+
+.oneVerticalImgWithText {
+  width: calc(1281px);
+  top: 505px;
+  left: 271px;
+  width: 1933px;
+  height: 2268px;
+  position: absolute;
+  object-fit: contain;
+}
+
+.twoHorizontalImgWithText {
+  width: calc(1934px);
+  top: calc(1044px);
+  left: calc(274px);
+  position: absolute;
+}
+
+.twoVerticalImgsWrapper {
+  position: absolute;
+  top: 505px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  height: 1673px;
+  .left {
+    max-width: 1000px;
+    object-fit: cover;
+  }
+  
+  .right {
+    max-width: 1000px;
+    margin-left: 65px;
+    object-fit: cover;
+  }
+}
+
