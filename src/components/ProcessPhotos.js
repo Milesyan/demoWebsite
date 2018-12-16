@@ -38,12 +38,12 @@ export class ProcessPhotos extends Component<Props, State> {
     this.props.updateImageInfo && this.props.updateImageInfo(...args);
   }
 
-  _pushReactElementToRes = (elements, res, mode, text=null) => {
+  _pushReactElementToRes = (elements, res, mode, date, text=null) => {
     if (!elements || !elements.length) {
       return;
     }
     const key = elements.map(e=>e.id).reduce((p,v)=> p + '-' + v, '')
-    res.push(<PhotobookPage key={key} photos={elements} mode={mode} text={text}/>)
+    res.push(<PhotobookPage key={key} photos={elements} mode={mode} text={text} date={date}/>)
   }
 
   groupPhotos = (posts) => {
@@ -53,13 +53,14 @@ export class ProcessPhotos extends Component<Props, State> {
       const horizontals = oneDayPhotos.filter(p=> p.width > p.height);
       const verticals = oneDayPhotos.filter(p=>p.width <= p.height);
       const text = post.text;
+      const date = post.date;
       const firstPhotomode = oneDayPhotos[0].width > oneDayPhotos[0].height ? Symbol.for('horizontal') : Symbol.for('vertical');
       if (firstPhotomode === Symbol.for('horizontal')) {
-        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), text)
-        this._pushReactElementToRes(verticals, res, Symbol.for('vertical'))
+        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
+        this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), date)
       } else {
-        this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), text)
-        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'))
+        this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), date, text)
+        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date)
       }
     }
     return this.groupByEveryTwo(res);

@@ -11,13 +11,11 @@ export default class PhotobookPage extends Component<Props> {
   }
  
   render() {
-    const photos = this.props.photos;
-
     // const Template = [One, Two, Three][photos.length] || One;
     const Template = One;
     return (
-      <div style={{backgroundColor: 'lightyellow', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <Template photos={photos} mode={this.props.mode}/>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <Template {...this.props} isDebug={true}/>
       </div>
     )
   }
