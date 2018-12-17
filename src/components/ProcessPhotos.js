@@ -125,6 +125,7 @@ export class ProcessPhotos extends Component<Props, State> {
           <div style={{width: 200,}}>
             <Select
               style={{width: '100%'}}
+              placeholder={'Zoom: 10%'}
               value={this.state.selectedOption}
               onChange={this.handleChange}
               options={options}
