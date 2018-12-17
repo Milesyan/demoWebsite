@@ -23,7 +23,7 @@ export default class PhotobookPage extends Component<Props> {
         res = Two;
         break;
     }
-    res = Two;
+    res = Three;
     return res;
   }
   render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import styles from './template.module.scss';
+import styles from './Two.module.scss';
+import moduleStyles from './template.module.scss';
 import { DateTag } from '../../basicComponents';
 
 type Props = {
@@ -112,7 +113,7 @@ export default class Two extends Component<Props> {
       throw new Error('Invalid mode');
     }
     return (
-      <div className={styles.container}>
+      <div className={moduleStyles.container}>
         {renderer && renderer(photos, text, this.props.date)}
       </div>
     )

@@ -1,0 +1,92 @@
+
+.ThreeVerticalsWithText {
+  position: absolute;
+  top: 505px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  .photoText {
+    font-size: 49px;
+    line-height: 1.68;
+    padding: 0 274px;
+    display: flex;
+
+  }
+  .photosWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+  }
+  .left {
+    width: 599px;
+    object-fit: contain;
+  }
+  
+  .right {
+    width: 599px;
+    margin-left: 65px;
+    object-fit: contain;
+  }
+}
+
+.ThreeHorizontalsWithText {
+  position: absolute;
+  top: 505px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  .photoText {
+    font-size: 49px;
+    line-height: 1.68;
+    display: flex;
+    flex-direction: column;
+
+  }
+  .photosWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px;
+  }
+  .left {
+    height: 701px;
+    object-fit: contain;
+    max-width: 1235;
+  }
+  
+  .right {
+    margin-top: 69px;
+    height: 701px;
+    object-fit: contain;
+    max-width: 1235;
+  }
+}
+
+.renderThreeHorizontals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  .image {
+    max-height: 1081px;
+    width: 1931px; 
+    object-fit: contain
+  }
+}
+.ThreeVerticalImgsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  .image {
+    max-width: 933px;
+    height: 1667px;
+    object-fit: contain
+  }
+}
