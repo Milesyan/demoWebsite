@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from './Previews.module.scss';
-import { RequestInviteDialog } from '.';
 import { Button } from '../basicComponents';
 import { connect } from 'react-redux';
 import { updateImageInfo } from '../actions/Photos';
@@ -19,6 +18,7 @@ type Props = {
 
 type State = {
 }
+
 export class Previews extends Component<Props, State> {
   componentDidMount() {
     //DEBUG

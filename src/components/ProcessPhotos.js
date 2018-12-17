@@ -9,6 +9,7 @@ import { getPostsWithPhotos } from '../selectors/Photos';
 import domtoimage from 'dom-to-image';
 import saveAs from 'file-saver';
 import ImagePreview from '../basicComponents/ImagePreview';
+import Select from 'react-select';
 
 
 type Props = {
@@ -18,7 +19,24 @@ type Props = {
 
 type State = {
 }
+
+const options = [
+  { value: 0.1, label: '10%' },
+  { value: 0.2, label: '20%' },
+  { value: 0.3, label: '40%' },
+  { value: 0.5, label: '50%' },
+  { value: 0.8, label: '80%' },
+  { value: 1, label: '100%' },
+];
+
+
 export class ProcessPhotos extends Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOption: 0.1
+    }
+  }
 
   onDownloadPDF = () => {
     const nodes = document.getElementById('photo-groups').childNodes;
@@ -89,16 +107,34 @@ export class ProcessPhotos extends Component<Props, State> {
     return group;
   }
 
-
+  handleChange = (value) => {
+    this.setState({
+      selectedOption: value
+    })
+  }
   render() {
     // DEBUG
     const photoGroups = this.groupPhotos(this.props.posts);
+    console.warn(this.state.selectedOption);
     return (
       <div className={styles.container}>
-        <Button onClick={this.onDownloadPDF}>
-          Export
-        </Button>
-        <div className={styles.photos} id="photo-groups">
+        <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: '80%', marginTop: 30}}>
+          <Button onClick={this.onDownloadPDF} style={{margin: 0}}>
+            Export
+          </Button>
+          <div style={{width: 200,}}>
+            <Select
+              style={{width: '100%'}}
+              value={this.state.selectedOption}
+              onChange={this.handleChange}
+              options={options}
+            />
+          </div>
+        </div>
+        <div 
+          className={styles.photos} 
+          style={{zoom: this.state.selectedOption.value}}
+          id="photo-groups">
           {photoGroups.map((g, idx)=>(
             <div 
               key={idx}
