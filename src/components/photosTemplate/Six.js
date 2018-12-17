@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './Four.module.scss';
+import styles from './Six.module.scss';
 import moduleStyles from './template.module.scss';
 import { DateTag } from '../../basicComponents';
 
@@ -10,9 +10,9 @@ type Props = {
   text: String,
   isDebug: Boolean
 }
-export default class Four extends Component<Props> {
-  renderFourHorizontalsWithText = (photos, text, date) => (
-    <div className={styles.FourVerticalsWithText}>
+export default class Six extends Component<Props> {
+  renderSixHorizontalsWithText = (photos, text, date) => (
+    <div className={styles.SixVerticalsWithText}>
       <div className={styles.photoText}>
         <DateTag date={date}/>
         <div style={{flex: 1, marginLeft: 98}}>
@@ -34,8 +34,8 @@ export default class Four extends Component<Props> {
   </div>
   )
  
-  renderFourVerticalsWithText = (photos, text, date) => (
-    <div className={styles.FourVerticalsWithText}>
+  renderSixVerticalsWithText = (photos, text, date) => (
+    <div className={styles.SixVerticalsWithText}>
       <div className={styles.photoText}>
         <DateTag date={date}/>
         <div style={{flex: 1, marginLeft: 98}}>
@@ -57,8 +57,8 @@ export default class Four extends Component<Props> {
   </div>
   )
  
-  renderFourHorizontals = (photos) => (
-    <div className={styles.FourVerticalsWithText}>
+  renderSixHorizontals = (photos) => (
+    <div className={styles.SixVerticalsWithText}>
       <div className={styles.photosWrapper}>
         {
           photos.map(photo=> (
@@ -74,8 +74,8 @@ export default class Four extends Component<Props> {
   </div>
   )
  
-  renderFourVerticals = (photos) => (
-    <div className={styles.FourVerticalsWithText}>
+  renderSixVerticals = (photos) => (
+    <div className={styles.SixVerticalsWithText}>
       <div className={styles.photosWrapper}>
         {
           photos.map(photo=> (
@@ -92,17 +92,17 @@ export default class Four extends Component<Props> {
   )
 
   render() {
-    const photos = this.props.photos.slice(0, 4);
-    if (photos.length<4){
+    const photos = this.props.photos.slice(0, 6);
+    if (photos.length<5){
       return null;
     }
     const mode = this.props.mode;
     const text = this.props.text;
     let renderer = null;
     if (mode === Symbol.for('horizontal') ) {
-      renderer = text ? this.renderFourVerticalsWithText : this.renderFourHorizontals;
+      renderer = text ? this.renderSixVerticalsWithText : this.renderSixHorizontals;
     } else if (mode === Symbol.for('vertical')) {
-      renderer = text ? this.renderFourHorizontalsWithText : this.renderFourVerticals;
+      renderer = text ? this.renderSixHorizontalsWithText : this.renderSixVerticals;
     } else {
       throw new Error('Invalid mode');
     }

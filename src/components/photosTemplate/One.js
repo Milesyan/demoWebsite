@@ -22,10 +22,6 @@ export default class One extends Component<Props> {
           alt="nothing" 
           src={photo.url}
         />
-        {this.props.isDebug && <div>
-          DEBUG {photo.width}/{photo.height} Date: {this.props.date}
-          <div>text: {this.props.text}</div>
-        </div>}
       </div>
     )
   }

@@ -55,12 +55,22 @@ export class ProcessPhotos extends Component<Props, State> {
       const text = post.text;
       const date = post.date;
       const firstPhotomode = oneDayPhotos[0].width > oneDayPhotos[0].height ? Symbol.for('horizontal') : Symbol.for('vertical');
-      if (firstPhotomode === Symbol.for('horizontal')) {
-        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
-        this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), date)
-      } else {
+      if (horizontals.length <= 6 && verticals.length <= 6) {
+        if (firstPhotomode === Symbol.for('horizontal')) {
+          this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
+          this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), date)
+        } else {
+          this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), date, text)
+          this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date)
+        }
+      } else if (horizontals.length > 6) {
+        this._pushReactElementToRes(horizontals.slice(0, 6), res, Symbol.for('horizontal'), date, text)
+        this._pushReactElementToRes(horizontals.slice(6), res, Symbol.for('horizontal'), date, text)
         this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), date, text)
-        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date)
+      } else if (verticals.length > 6) {
+        this._pushReactElementToRes(verticals.slice(0, 6), res, Symbol.for('vertical'), date, text)
+        this._pushReactElementToRes(verticals.slice(6), res, Symbol.for('vertical'), date, text)
+        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
       }
     }
     return this.groupByEveryTwo(res);

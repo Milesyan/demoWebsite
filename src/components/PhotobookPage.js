@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { One, Two, Three, Four } from './photosTemplate';
+import { One, Two, Three, Four, Six } from './photosTemplate';
 type Props = {
   photo: Object,
   mode: string,
@@ -11,8 +11,7 @@ export default class PhotobookPage extends Component<Props> {
   }
  
   findTemplateByProps = (length, mode, date, text) => {
-    let res = [One, Two, Three, Four][length-1]
-    res = Four;
+    let res = [One, Two, Three, Four][length-1] || Six;
     return res;
   }
   render() {

@@ -1,5 +1,5 @@
 
-.FourVerticalsWithText {
+.SixVerticalsWithText {
   position: absolute;
   top: 505px;
   width: 100%;
@@ -17,22 +17,23 @@
   .photosWrapper {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin-top: 50px;
-    max-width: 763px*2 + 165px;
+    width: 599px*3 + 180px;
   }
   .image {
     margin: 30px;
-    height: 1017px;
-    width: 763px;
+    height: 796px;
+    width: 599px;
     object-fit: cover;
   }
   
 }
 
-.FourHorizontalsWithText {
+
+.SixHorizontalsWithText {
   position: absolute;
   top: 505px;
   width: 100%;
@@ -45,7 +46,6 @@
     line-height: 1.68;
     padding: 0 274px;
     display: flex;
-
   }
   .photosWrapper {
     display: flex;
@@ -64,7 +64,7 @@
   }
 }
 
-.renderFourHorizontals {
+.renderSixHorizontals {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +76,7 @@
     object-fit: contain
   }
 }
-.FourVerticalImgsWrapper {
+.SixVerticalImgsWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
