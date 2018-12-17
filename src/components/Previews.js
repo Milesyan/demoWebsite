@@ -24,7 +24,7 @@ export class Previews extends Component<Props, State> {
     //DEBUG
     setTimeout(() => {
       this.processPhotos();
-    }, 1000);
+    }, 100);
   }
   onDownloadPDF = () => {
     domtoimage.toBlob(document.getElementById('example'), {width: 2480, height: 3354})

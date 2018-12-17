@@ -1,0 +1,62 @@
+@import '../styles/base';
+
+.dateLabel {
+  width: 332px;
+  height: 128px;
+  border-radius: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 1.06;
+}
+
+.jan {
+  background-color: $jan
+}
+
+.feb {
+  background-color: $feb
+}
+
+.mar {
+  background-color: $mar
+}
+
+.apr {
+  background-color: $apr
+}
+
+.may {
+  background-color: $may
+}
+
+.jun {
+  background-color: $jun
+}
+
+.jul {
+  background-color: $jul
+}
+
+.aug {
+  background-color: $aug
+}
+
+.sep {
+  background-color: $sep
+}
+
+.oct {
+  background-color: $oct
+}
+
+.nov {
+  background-color: $nov
+}
+
+.dec {
+  background-color: $dec
+}

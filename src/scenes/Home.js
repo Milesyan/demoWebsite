@@ -4,15 +4,17 @@ import styles from './Home.module.scss';
 import { connect } from 'react-redux';
 import { getHomeStatus } from '../selectors/Home';
 import { HOME_STATUS } from '../reducers/Home';
-
-export class Home extends PureComponent {
+type Props = {
+  status: HOME_STATUS
+}
+export class Home extends PureComponent<Props> {
   render() {
     return (
       <div className={styles.container}>
         <Header/>
         {this.props.status === HOME_STATUS.preview && <Previews/>}
         {this.props.status === HOME_STATUS.process && <ProcessPhotos/>}
-        <Footer/>
+        {/*<Footer/>*/}
       </div>
     )
   }

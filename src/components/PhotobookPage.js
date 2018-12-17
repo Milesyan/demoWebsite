@@ -10,9 +10,24 @@ export default class PhotobookPage extends Component<Props> {
   componentDidMount() {
   }
  
+  findTemplateByProps = (length, mode, date, text) => {
+    let res;
+    switch (length) {
+      case 1:
+        res = One;
+        break;
+      case 2:
+        res = Two;
+        break;
+      default:
+        res = Two;
+        break;
+    }
+    res = Two;
+    return res;
+  }
   render() {
-    // const Template = [One, Two, Three][photos.length] || One;
-    const Template = Two;
+    const Template = this.findTemplateByProps(this.props.photos.length, this.props.mode, this.props.date, this.props.text);
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <Template {...this.props} isDebug={true}/>
