@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { One, Two, Three, Four, Six } from './photosTemplate';
+import { One, Two, Three, Four, Six } from './PhotosTemplate';
 type Props = {
   photo: Object,
   mode: string,

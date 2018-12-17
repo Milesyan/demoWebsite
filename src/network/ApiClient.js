@@ -32,8 +32,4 @@ export default class ApiClient {
     return data;
   }
 
-  static async requestInvite(name, email) {
-    const params = {name, email}
-    return await this.post(APIS.fake, params);
-  }
 }
