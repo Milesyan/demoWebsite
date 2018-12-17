@@ -82,7 +82,7 @@ export class ProcessPhotos extends Component<Props, State> {
 
   render() {
     // DEBUG
-    const photoGroups = this.groupPhotos(this.props.posts).slice(0, 1);
+    const photoGroups = this.groupPhotos(this.props.posts);
     return (
       <div className={styles.container}>
         <Button onClick={this.onDownloadPDF}>

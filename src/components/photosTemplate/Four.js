@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './Three.module.scss';
+import styles from './Four.module.scss';
 import moduleStyles from './template.module.scss';
 import { DateTag } from '../../basicComponents';
 
@@ -10,40 +10,9 @@ type Props = {
   text: String,
   isDebug: Boolean
 }
-export default class Three extends Component<Props> {
-  renderThreeHorizontalsWithText = (photos, text, date) => (
-    <div className={styles.ThreeHorizontalsWithText}>
-      <div className={styles.photoText}>
-        <DateTag date={date}/>
-        <div style={{marginTop: 320, width: 498}}>
-          {this.props.text}
-        </div>
-      </div>
-      <div className={styles.photosWrapper}>
-        <img
-          key={photos[0].id}
-          className={styles.left}
-          alt="nothing" 
-          src={photos[0].url}
-        />
-        <img
-          key={photos[1].id}
-          className={styles.right}
-          alt="nothing" 
-          src={photos[1].url}
-        />
-        <img
-          key={photos[2].id}
-          className={styles.right}
-          alt="nothing" 
-          src={photos[2].url}
-        />
-      </div>
-  </div>
-  )
- 
-  renderThreeVerticalsWithText = (photos, text, date) => (
-    <div className={styles.ThreeVerticalsWithText}>
+export default class Four extends Component<Props> {
+  renderFourHorizontalsWithText = (photos, text, date) => (
+    <div className={styles.FourVerticalsWithText}>
       <div className={styles.photoText}>
         <DateTag date={date}/>
         <div style={{flex: 1, marginLeft: 98}}>
@@ -51,30 +20,45 @@ export default class Three extends Component<Props> {
         </div>
       </div>
       <div className={styles.photosWrapper}>
-        <img
-          key={photos[0].id}
-          className={styles.left}
-          alt="nothing" 
-          src={photos[0].url}
-        />
-        <img
-          key={photos[1].id}
-          className={styles.right}
-          alt="nothing" 
-          src={photos[1].url}
-        />
-        <img
-          key={photos[2].id}
-          className={styles.right}
-          alt="nothing" 
-          src={photos[2].url}
-        />
+        {
+          photos.map(photo=> (
+            <img
+            key={photo.id}
+            className={styles.image}
+            alt="nothing" 
+            src={photo.url}
+          />
+          ))
+        }
       </div>
   </div>
   )
  
-  renderThreeHorizontals = (photos) => (
-    <div className={styles.renderThreeHorizontals}>
+  renderFourVerticalsWithText = (photos, text, date) => (
+    <div className={styles.FourVerticalsWithText}>
+      <div className={styles.photoText}>
+        <DateTag date={date}/>
+        <div style={{flex: 1, marginLeft: 98}}>
+          {this.props.text}
+        </div>
+      </div>
+      <div className={styles.photosWrapper}>
+        {
+          photos.map(photo=> (
+            <img
+            key={photo.id}
+            className={styles.image}
+            alt="nothing" 
+            src={photo.url}
+          />
+          ))
+        }
+      </div>
+  </div>
+  )
+ 
+  renderFourHorizontals = (photos) => (
+    <div className={styles.renderFourHorizontals}>
       <img
         key={photos[0].id}
         className={styles.image}
@@ -98,8 +82,8 @@ export default class Three extends Component<Props> {
   </div>
   )
  
-  renderThreeVerticals = (photos) => (
-    <div className={styles.ThreeVerticalImgsWrapper}>
+  renderFourVerticals = (photos) => (
+    <div className={styles.FourVerticalImgsWrapper}>
       <img
         key={photos[0].id}
         className={styles.image}
@@ -124,17 +108,17 @@ export default class Three extends Component<Props> {
   )
 
   render() {
-    const photos = this.props.photos.slice(0, 3);
-    if (photos.length<3){
+    const photos = this.props.photos.slice(0, 4);
+    if (photos.length<4){
       return null;
     }
     const mode = this.props.mode;
     const text = this.props.text;
     let renderer = null;
     if (mode === Symbol.for('horizontal') ) {
-      renderer = text ? this.renderThreeHorizontalsWithText : this.renderThreeHorizontals;
+      renderer = text ? this.renderFourVerticalsWithText : this.renderFourHorizontals;
     } else if (mode === Symbol.for('vertical')) {
-      renderer = text ? this.renderThreeVerticalsWithText : this.renderThreeVerticals;
+      renderer = text ? this.renderFourHorizontalsWithText : this.renderFourVerticals;
     } else {
       throw new Error('Invalid mode');
     }

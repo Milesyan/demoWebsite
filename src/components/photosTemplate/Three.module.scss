@@ -73,8 +73,8 @@
   flex-direction: column;
   height: 100%;
   .image {
-    max-height: 1081px;
-    width: 1931px; 
+    height: 709px;
+    max-width: 1263px; 
     object-fit: contain
   }
 }
@@ -85,8 +85,8 @@
   flex-direction: row;
   height: 100%;
   .image {
-    max-width: 933px;
-    height: 1667px;
+    width: 599px;
+    max-height: 1071px;
     object-fit: contain
   }
 }
