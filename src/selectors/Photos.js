@@ -10,6 +10,19 @@ export const getPostsWithPhotos = createSelector(
   (posts, photos) => combinePostsWithPhotos(posts, photos)
 )
 
+export const getPostsStartEndDate = createSelector(
+  getPosts,
+  (posts) => {
+    if (!posts || posts.length < 2){
+      return ''
+    }
+    const start = posts[0].date;
+    const end = posts[posts.length - 1].date;
+    const [sYear, sMonth,] = start.split('-');
+    const [eYear, eMonth,] = end.split('-');
+    return `${sYear}.${sMonth}-${eYear}.${eMonth}`
+  }
+)
 const combinePostsWithPhotos = (posts, photos) => {
   const next = produce(posts, draft => {
     for (const post of draft) {

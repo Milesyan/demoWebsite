@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import { updateImageInfo } from '../actions/Photos';
 import { bindActionCreators } from 'redux';
 import { getPostsWithPhotos } from '../selectors/Photos';
+import { Months } from '../components/MonthsTemplate/';
 import domtoimage from 'dom-to-image';
 import saveAs from 'file-saver';
-import ImagePreview from '../basicComponents/ImagePreview';
 import Select from 'react-select';
-
+import Cover from '../components/CoversTemplate/Cover';
 
 type Props = {
   posts: Array<*>,
@@ -29,7 +29,6 @@ const options = [
   { value: 1, label: '100%' },
 ];
 
-
 export class ProcessPhotos extends Component<Props, State> {
   constructor(props) {
     super(props);
@@ -47,7 +46,10 @@ export class ProcessPhotos extends Component<Props, State> {
   }
 
   saveOnePhotoPage = (node, idx) => {
-    domtoimage.toBlob(node, {width: 2480 * 2, height: 3354, style:{zoom: 1}})
+    // First Page is larger than others
+    const width = idx === 0 ? 5480 : 2396 * 2;
+    const height = idx === 0 ? 3780 : 3354;
+    domtoimage.toBlob(node, {width: width, height: height, style: {zoom: 1}})
       .then(blob=> {
         saveAs(blob, `photobook_${idx+1}.jpg`);
       })
@@ -56,7 +58,7 @@ export class ProcessPhotos extends Component<Props, State> {
     this.props.updateImageInfo && this.props.updateImageInfo(...args);
   }
 
-  _pushReactElementToRes = (elements, res, mode, date, text=null) => {
+  _pushPhotoBookElementToRes = (elements, res, mode, date, text=null) => {
     if (!elements || !elements.length) {
       return;
     }
@@ -64,8 +66,13 @@ export class ProcessPhotos extends Component<Props, State> {
     res.push(<PhotobookPage key={key} photos={elements} mode={mode} text={text} date={date}/>)
   }
 
+  _pushMonthElementToRes = (res, month, text, ...rest) => {
+    res.push(<Months key={month} month={month} text={text} {...rest}/>);
+  }
+
   groupPhotos = (posts) => {
     const res = [];
+    this.shownMonth = [];
     for (const post of posts) {
       const oneDayPhotos = post.photoEntities;
       const horizontals = oneDayPhotos.filter(p=> p.width > p.height);
@@ -73,25 +80,30 @@ export class ProcessPhotos extends Component<Props, State> {
       const text = post.text;
       const date = post.date;
       const firstPhotomode = oneDayPhotos[0].width > oneDayPhotos[0].height ? Symbol.for('horizontal') : Symbol.for('vertical');
+      const [year, month, day] = date.split('-');
+      if (!this.shownMonth.includes(month)) {
+        this._pushMonthElementToRes(res, month)
+        this.shownMonth.push(month);
+      }
       if (horizontals.length <= 6 && verticals.length <= 6) {
         if (firstPhotomode === Symbol.for('horizontal')) {
-          this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
-          this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), date)
+          this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
+          this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date)
         } else {
-          this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), date, text)
-          this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date)
+          this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date, text)
+          this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date)
         }
       } else if (horizontals.length > 6) {
-        this._pushReactElementToRes(horizontals.slice(0, 6), res, Symbol.for('horizontal'), date, text)
-        this._pushReactElementToRes(horizontals.slice(6), res, Symbol.for('horizontal'), date, text)
-        this._pushReactElementToRes(verticals, res, Symbol.for('vertical'), date, text)
+        this._pushPhotoBookElementToRes(horizontals.slice(0, 6), res, Symbol.for('horizontal'), date, text)
+        this._pushPhotoBookElementToRes(horizontals.slice(6), res, Symbol.for('horizontal'), date, text)
+        this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date, text)
       } else if (verticals.length > 6) {
-        this._pushReactElementToRes(verticals.slice(0, 6), res, Symbol.for('vertical'), date, text)
-        this._pushReactElementToRes(verticals.slice(6), res, Symbol.for('vertical'), date, text)
-        this._pushReactElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
+        this._pushPhotoBookElementToRes(verticals.slice(0, 6), res, Symbol.for('vertical'), date, text)
+        this._pushPhotoBookElementToRes(verticals.slice(6), res, Symbol.for('vertical'), date, text)
+        this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
       }
     }
-    return this.groupByEveryTwo(res);
+    return [<Cover/>].concat(this.groupByEveryTwo(res));
   }
 
 
@@ -113,9 +125,7 @@ export class ProcessPhotos extends Component<Props, State> {
     })
   }
   render() {
-    // DEBUG
     const photoGroups = this.groupPhotos(this.props.posts);
-    console.warn(this.state.selectedOption);
     return (
       <div className={styles.container}>
         <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: '80%', marginTop: 30}}>
@@ -145,7 +155,6 @@ export class ProcessPhotos extends Component<Props, State> {
             </div>
           ))}
         </div>
-
       </div>
     )
   }

@@ -1,0 +1,45 @@
+@import '../../styles/base';
+
+.container {
+  width: 2396px;
+  height: 3354px;
+  background-color: white;
+  position: relative;
+}
+
+.Jan {
+  background-color: $jan
+}
+.Feb {
+  background-color: $feb
+}
+.Mar {
+  background-color: $mar
+}
+.Apr {
+  background-color: $apr
+}
+.May {
+  background-color: $may
+}
+.Jun {
+  background-color: $jun
+}
+.Jul {
+  background-color: $jul
+}
+.Aug {
+  background-color: $aug
+}
+.Sep {
+  background-color: $sep
+}
+.Oct {
+  background-color: $oct
+}
+.Nov {
+  background-color: $nov
+}
+.Dec {
+  background-color: $dec
+}
