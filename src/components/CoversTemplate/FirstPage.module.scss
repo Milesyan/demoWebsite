@@ -1,0 +1,13 @@
+.container {
+  width: 2396px * 2;
+  height: 3354px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  background-color: #1facdb;
+
+  img {
+    position: absolute;
+  }
+}

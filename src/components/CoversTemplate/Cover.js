@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import styles from '../CoversTemplate/Cover.module.scss';
 
-import backpageSlogen from './images/backpage-slogan.png';
+import backpageSlogan from './images/backpage-slogan.png';
 import backpageBg from './images/backpage-bg.png';
 import coverpageCartoon from './images/coverpage-cartoon.png';
 import coverpageLogo from './images/coverpage-logo.png';
@@ -24,10 +24,10 @@ export class Cover extends PureComponent<Props> {
     return (
       <div className={styles.container}>
         <div className={styles.backPage}>
-          <img alt='slogen' src={backpageSlogen} style={{height: 231, width: 1493, top: 1406, left: 796}} />
+          <img alt='slogan' src={backpageSlogan} style={{height: 231, width: 1493, top: 1406, left: 796}} />
           <img alt='qr' src={mockQr} style={{height: 380, width: 380, top: 1727, left: 1351}} />
           <img alt='bg' src={backpageBg} style={{height: 701, width: 1540, bottom: 0, left: 0}} />
-          <img alt='logo' src={glowLogo} style={{height: 110, width: 1507, bottom: 430, right: 21}} />
+          <img alt='logo' src={glowLogo} style={{height: 110, width: 1507, bottom: 478, right: 110}} />
         </div>
         <div className={styles.frontPage}>
           <img alt='logo' src={coverpageLogo} style={{height: 404, width: 1926, top: 844, left: 409}} />

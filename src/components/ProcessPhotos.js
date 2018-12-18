@@ -11,6 +11,7 @@ import domtoimage from 'dom-to-image';
 import saveAs from 'file-saver';
 import Select from 'react-select';
 import Cover from '../components/CoversTemplate/Cover';
+import FirstPage from '../components/CoversTemplate/FirstPage';
 
 type Props = {
   posts: Array<*>,
@@ -33,10 +34,11 @@ export class ProcessPhotos extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: 0.1
+      selectedOption: 0.1,
+      totalPagesCount: 0
     }
   }
-
+  
   onDownloadPDF = () => {
     const nodes = document.getElementById('photo-groups').childNodes;
     for (const [idx, node] of nodes.entries()) {
@@ -103,7 +105,8 @@ export class ProcessPhotos extends Component<Props, State> {
         this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
       }
     }
-    return [<Cover/>].concat(this.groupByEveryTwo(res));
+    const r = [<Cover/>, <FirstPage/>].concat(this.groupByEveryTwo(res));
+    return r
   }
 
 
@@ -132,6 +135,9 @@ export class ProcessPhotos extends Component<Props, State> {
           <Button onClick={this.onDownloadPDF} style={{margin: 0}}>
             Export
           </Button>
+          <div style={{width: 200, textAlign: 'center'}}>
+            Total Pages: {photoGroups.length}
+          </div>
           <div style={{width: 200,}}>
             <Select
               style={{width: '100%'}}
