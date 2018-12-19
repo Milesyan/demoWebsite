@@ -20,12 +20,15 @@ type State = {
 }
 
 export class Previews extends Component<Props, State> {
-  componentDidMount() {
-    //DEBUG
-    setTimeout(() => {
-      this.processPhotos();
-    }, 100);
+  componentDidUpdate = (prevProps, prevState) => {
+    if (this.props.photos !== prevProps.photos) {
+      const photoLoaded = !Object.values(this.props.photos).map(p=>p.width && p.height).includes(null)
+      if (photoLoaded) {
+        this.processPhotos();
+      }
+    }
   }
+  
   onDownloadPDF = () => {
     domtoimage.toBlob(document.getElementById('example'), {width: 2480, height: 3354})
       .then(blob=> {
@@ -52,9 +55,9 @@ export class Previews extends Component<Props, State> {
     const photos = Object.values(this.props.photos);
     return (
       <div className={styles.container} id="example">
-        <Button onClick={this.processPhotos}>
-          Process Photos
-        </Button>
+        {/*<Button onClick={this.processPhotos}>
+            Process Photos
+          </Button>*/}
         <div className={styles.photos}>
           {
             photos.map(photo=>(
