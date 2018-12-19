@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { updateImageInfo } from '../actions/Photos';
 import { bindActionCreators } from 'redux';
 import { getPostsWithPhotos } from '../selectors/Photos';
+import { getBaby } from '../selectors/Baby';
 import { Months } from '../components/MonthsTemplate/';
 import domtoimage from 'dom-to-image';
 import saveAs from 'file-saver';
@@ -68,8 +69,8 @@ export class ProcessPhotos extends Component<Props, State> {
     res.push(<PhotobookPage key={key} photos={elements} mode={mode} text={text} date={date}/>)
   }
 
-  _pushMonthElementToRes = (res, month, text, ...rest) => {
-    res.push(<Months key={month} month={month} text={text} {...rest}/>);
+  _pushMonthElementToRes = (res, year, month, baby) => {
+    res.push(<Months key={`${year}-${month}`} year={year} month={month} baby={baby}/>);
   }
 
   groupPhotos = (posts) => {
@@ -84,7 +85,7 @@ export class ProcessPhotos extends Component<Props, State> {
       const firstPhotomode = oneDayPhotos[0].width > oneDayPhotos[0].height ? Symbol.for('horizontal') : Symbol.for('vertical');
       const [year, month, day] = date.split('-');
       if (!this.shownMonth.includes(month)) {
-        this._pushMonthElementToRes(res, month)
+        this._pushMonthElementToRes(res, year, month, this.props.baby)
         this.shownMonth.push(month);
       }
       if (horizontals.length <= 6 && verticals.length <= 6) {
@@ -118,6 +119,10 @@ export class ProcessPhotos extends Component<Props, State> {
       }
       group[j] = group[j] || [];
       group[j].push(pages[i]);
+    }
+    if (group[group.length-1].length === 1) {
+      const emptyPage = <div style={{ width: 2396,height: 3354, backgroundColor: 'white'}} />;
+      group[group.length-1].push(emptyPage)
     }
     return group;
   }
@@ -167,7 +172,8 @@ export class ProcessPhotos extends Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-  posts: getPostsWithPhotos(state)
+  posts: getPostsWithPhotos(state),
+  baby: getBaby(state)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -7,6 +7,32 @@
   position: relative;
 }
 
+.yearText {
+  position: absolute;
+  top: 897px;
+  left: 608px;
+  font-size: 180px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.monthImage {
+  position: absolute;
+  top: 1263px;
+  left: 608px;
+  height: 840px;
+}
+
+.babyText {
+  position: absolute;
+  left: 608px;
+  top: 2327px;
+  font-size: 120px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 6px;
+}
+
 .Jan {
   background-color: $jan
 }
