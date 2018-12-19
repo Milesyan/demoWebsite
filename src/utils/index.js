@@ -26,7 +26,6 @@ export function calculateAgeAtMonth(birth, year, month) {
   months += parseInt(month);
   const [diffYear, diffMonth] = [Math.floor(months/12) , months % 12];
   if (diffYear) {
-    
     return diffMonth ? `${convertNumToChar(diffYear)}岁${diffMonth}个月` : `${convertNumToChar(diffYear)}岁`;
   } else {
     return `${diffMonth}个月`;

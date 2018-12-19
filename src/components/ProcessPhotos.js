@@ -35,7 +35,7 @@ export class ProcessPhotos extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: 0.1,
+      selectedOption: { value: 0.2, label: '20%' },
       totalPagesCount: 0
     }
   }
@@ -77,7 +77,10 @@ export class ProcessPhotos extends Component<Props, State> {
     const res = [];
     this.shownMonth = [];
     for (const post of posts) {
-      const oneDayPhotos = post.photoEntities;
+      const oneDayPhotos = post.photoEntities.filter(p=>p);
+      if (!oneDayPhotos || !oneDayPhotos.length) {
+        continue;
+      }
       const horizontals = oneDayPhotos.filter(p=> p.width > p.height);
       const verticals = oneDayPhotos.filter(p=>p.width <= p.height);
       const text = post.text;

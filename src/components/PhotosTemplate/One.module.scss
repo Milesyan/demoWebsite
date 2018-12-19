@@ -1,0 +1,84 @@
+
+.OneVerticalsWithText {
+  position: absolute;
+  top: 505px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  height: 100%;
+  padding: 0 222px;
+  box-sizing: border-box;
+  .photoText {
+    font-size: 49px;
+    line-height: 1.68;
+    padding-right: 166px;
+    display: flex;
+    flex-direction: column;
+  }
+  .photosWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+  }
+  .image {
+    width: 1281px;
+    object-fit: contain;
+    max-height: 2268px;
+  }
+
+}
+
+.OneHorizontalsWithText {
+  position: absolute;
+  top: 505px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 222px;
+  box-sizing: border-box;
+  .photoText {
+    font-size: 49px;
+    line-height: 1.68;
+    display: flex;
+  }
+  .photosWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 204px;
+  }
+  .image {
+    max-height: 1382px;
+    object-fit: contain;
+    width: 1934px;
+  }
+ }
+
+.renderOneImageHorizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  .image {
+    max-height: 2266px;
+    width: 1936px; 
+    object-fit: contain
+  }
+}
+.renderOneImageVertical {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  .image {
+    height: 2266px;
+    max-width: 1936px; 
+    object-fit: contain
+  }
+}

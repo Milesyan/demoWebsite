@@ -1,4 +1,31 @@
+function genTestPost(id, photos, hasText=true) {
+  return {
+    id,
+    date: '2017-05-29',
+    text: hasText ? '新年第一天，我的宝贝更乖了，吃完饺子主动要喝水，饭后乖乖吃水果，还会自己用毛巾擦嘴巴～\n哎呦我的小宝贝啊，妈妈怎么能不爱你呢～' : null,
+    photos
+  }
+}
 export const photoPosts = [
+  genTestPost(100, [10], true),
+  genTestPost(100, [1], true),
+  genTestPost(100, [1], false),
+  genTestPost(100, [4], false),
+  genTestPost(100, [4], true),
+  genTestPost(100, [1,2], true),
+  genTestPost(100, [1,2], false),
+  genTestPost(100, [5,4], true),
+  genTestPost(100, [5,4], false),
+  genTestPost(100, [1,2,3], true),
+  genTestPost(100, [1,2,3], false),
+  genTestPost(100, [5,4,4], true),
+  genTestPost(100, [5,4,4], false),
+  genTestPost(100, [1,2,3, 6], true),
+  genTestPost(100, [1,2,3, 6], false),
+  genTestPost(100, [5,4,4,5], true),
+  genTestPost(100, [5,4,4,5], false),
+  genTestPost(100, [1,2,3,6,7,7], true),
+  genTestPost(100, [1,2,3,6,7,7], false),
   {
     id: 1,
     date: '2018-01-01',
