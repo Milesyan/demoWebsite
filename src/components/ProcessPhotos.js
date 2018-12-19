@@ -150,14 +150,17 @@ export class ProcessPhotos extends Component<Props, State> {
           <div style={{width: 200, textAlign: 'center'}}>
             Total Pages: {photoGroups.length}
           </div>
-          <div style={{width: 200,}}>
-            <Select
-              style={{width: '100%'}}
-              placeholder={'Zoom: 10%'}
-              value={this.state.selectedOption}
-              onChange={this.handleChange}
-              options={options}
-            />
+          <div style={{display: 'flex', zIndex: 1, position: 'fixed', top: 150, right: 50, alignItems: 'center'}}>
+            <span style={{marginRight: 10, fontSize: 18}}>Zoom: </span>
+            <div style={{width: 100,}}> 
+              <Select
+                style={{width: '100%', flex: 1}}
+                placeholder={'Zoom: 10%'}
+                value={this.state.selectedOption}
+                onChange={this.handleChange}
+                options={options}
+              />
+            </div>
           </div>
         </div>
         <div 
