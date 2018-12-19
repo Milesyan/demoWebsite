@@ -24,7 +24,7 @@ export class Previews extends Component<Props, State> {
     if (this.props.photos !== prevProps.photos) {
       const photoLoaded = !Object.values(this.props.photos).map(p=>p.width && p.height).includes(null)
       if (photoLoaded) {
-        this.processPhotos();
+        this.props.setHomeStatusProcess()
       }
     }
   }
@@ -34,10 +34,6 @@ export class Previews extends Component<Props, State> {
       .then(blob=> {
         saveAs(blob, 'my-node.jpg');
       })
-  }
-
-  processPhotos = () => {
-    this.props.setHomeStatusProcess()
   }
 
   onImagePreviewLoad = (id, width, height) => {

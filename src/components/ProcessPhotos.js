@@ -34,6 +34,7 @@ const options = [
 export class ProcessPhotos extends Component<Props, State> {
   constructor(props) {
     super(props);
+    this.pageNum = 0;
     this.state = {
       selectedOption: { value: 0.2, label: '20%' },
       totalPagesCount: 0
@@ -66,10 +67,12 @@ export class ProcessPhotos extends Component<Props, State> {
       return;
     }
     const key = elements.map(e=>e.id).reduce((p,v)=> p + '-' + v, '')
-    res.push(<PhotobookPage key={key} photos={elements} mode={mode} text={text} date={date}/>)
+    this.pageNum += 1;
+    res.push(<PhotobookPage key={key} photos={elements} mode={mode} text={text} date={date} pageNum={this.pageNum}/>)
   }
 
   _pushMonthElementToRes = (res, year, month, baby) => {
+    this.pageNum += 1;
     res.push(<Months key={`${year}-${month}`} year={year} month={month} baby={baby}/>);
   }
 
@@ -117,11 +120,12 @@ export class ProcessPhotos extends Component<Props, State> {
   groupByEveryTwo = (pages) => {
     let group = [];
     for (let i=0, j=0; i < pages.length; i++) {
+      const Ele = pages[i];
       if (i >= 2 && i % 2 === 0 ) {
         j++;
       }
       group[j] = group[j] || [];
-      group[j].push(pages[i]);
+      group[j].push(Ele);
     }
     if (group[group.length-1].length === 1) {
       const emptyPage = <div style={{ width: 2396,height: 3354, backgroundColor: 'white'}} />;
@@ -160,12 +164,12 @@ export class ProcessPhotos extends Component<Props, State> {
           className={styles.photos} 
           style={{zoom: this.state.selectedOption.value}}
           id="photo-groups">
-          {photoGroups.map((g, idx)=>(
+          {photoGroups.map((group, idx)=>(
             <div 
               key={idx}
               className={styles.photoGroup}
             >
-              {g}
+              {group}
             </div>
           ))}
         </div>

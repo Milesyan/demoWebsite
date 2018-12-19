@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import styles from './One.module.scss';
-import moduleStyles from './template.module.scss';
 import { DateTag } from '../../basicComponents';
+import Template from './Template';
 
 type Props = {
   photo: Object,
   mode: string,
   date: String,
   text: String,
-  isDebug: Boolean
+  isDebug: Boolean,
+  pageNum: Number
 }
 export default class One extends Component<Props> {
   renderOneHorizontalsWithText = (photo, text, date) => (
@@ -87,9 +88,10 @@ export default class One extends Component<Props> {
       throw new Error('Invalid mode');
     }
     return (
-      <div className={moduleStyles.container}>
-        {renderer && renderer(photo, text, this.props.date)}
-      </div>
+      <Template 
+        render={renderer.bind(this, photo, text, this.props.date)}
+        pageNum={this.props.pageNum} 
+        date={this.props.date}/>
     )
   }
 }

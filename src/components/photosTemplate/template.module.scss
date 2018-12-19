@@ -4,3 +4,14 @@
   background-color: white;
   position: relative;
 }
+
+.pageNum {
+  position: absolute;
+  bottom: 186px;
+  line-height: 1.61;
+  letter-spacing: 2.6px;
+  font-weight: 300;
+  font-size: 33px;
+  width: 334px;
+  display: flex;
+}

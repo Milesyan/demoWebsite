@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './Three.module.scss';
-import moduleStyles from './template.module.scss';
 import { DateTag } from '../../basicComponents';
+import Template from './Template';
 
 type Props = {
   photo: Object,
@@ -139,9 +139,10 @@ export default class Three extends Component<Props> {
       throw new Error('Invalid mode');
     }
     return (
-      <div className={moduleStyles.container}>
-        {renderer && renderer(photos, text, this.props.date)}
-      </div>
+      <Template 
+        render={renderer.bind(this, photos, text, this.props.date)}
+        pageNum={this.props.pageNum} 
+        date={this.props.date}/>
     )
   }
 }

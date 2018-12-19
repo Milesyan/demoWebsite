@@ -4,7 +4,8 @@ type Props = {
   photo: Object,
   mode: string,
   date: String,
-  text: String
+  text: String,
+  pageNum: Number
 }
 export default class PhotobookPage extends Component<Props> {
   componentDidMount() {
@@ -18,7 +19,7 @@ export default class PhotobookPage extends Component<Props> {
     const Template = this.findTemplateByProps(this.props.photos.length, this.props.mode, this.props.date, this.props.text);
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <Template {...this.props} isDebug={true}/>
+        <Template {...this.props} pageNum={this.props.pageNum}/>
       </div>
     )
   }
