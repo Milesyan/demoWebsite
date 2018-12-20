@@ -4,3 +4,4 @@ export { default as RequestInviteDialog } from './RequestInviteDialog';
 export { default as Previews } from './Previews';
 export { default as ProcessPhotos } from './ProcessPhotos';
 export { default as PhotobookPage } from './PhotobookPage';
+export { default as InitialPage } from './InitialPage';

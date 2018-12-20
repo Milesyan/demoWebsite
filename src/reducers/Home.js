@@ -1,11 +1,12 @@
 import { ActionTypes } from '../actions/ActionTypes';
 export const HOME_STATUS = {
+  initial: Symbol(),
   preview: Symbol(),
   process: Symbol(),
   done: Symbol()
 }
 const defaultState = {
-  status: HOME_STATUS.preview
+  status: HOME_STATUS.initial
 }
 const Home = (state = defaultState, action) => {
   switch (action.type) {

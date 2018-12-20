@@ -17,6 +17,16 @@ const Home = (state = defaultState, action) => {
         photo.height = height;
       })
       return nextState;
+    case ActionTypes.SET_POSTS:
+      const postState = produce(state, draft => {
+        draft.photoPosts = action.payload
+      })
+      return postState;
+    case ActionTypes.SET_PHOTOS:
+      const photosState = produce(state, draft => {
+        draft.photoEntities = action.payload
+      })
+      return photosState;
     default:
       return state;
   }

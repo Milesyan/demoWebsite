@@ -1,8 +1,8 @@
 
 import { HttpError, ServerError } from './errors';
-const BASEURL = 'https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod';
+const BASEURL = 'http://localhost:5000';
 const APIS = {
-  fake: 'fake-auth'
+  graphql: 'baby_photo/graphql?'
 }
 
 
@@ -32,4 +32,32 @@ export default class ApiClient {
     return data;
   }
 
+  static async query(gql, variables) {
+    const url = `${BASEURL}/${APIS.graphql}`;
+    const init = {
+      method: 'POST',
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "7C0MJzDi772ZPLIIH6R3AO3AAjX9ONj2w8mVtXksAMNGRJPwkKJ3ZII-TgrJDmdE"
+      },
+      body: JSON.stringify({
+        query: gql,
+        variables: ""
+      })      
+    }
+    let response = await fetch(url, init);
+    return await this.checkResponse(response);
+  }
+
+  static async queryPhotosData(babyId) {
+    const gql = 
+    `query {
+        photobookData(babyId: ${babyId})
+      }
+    `;
+    const variables = {
+      babyId: babyId
+    }
+    return await this.query(gql, variables);
+  }
 }

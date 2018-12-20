@@ -1,0 +1,16 @@
+@import '../styles/base';
+.container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid lightgrey;
+  border-radius: 4px;
+}

@@ -135,6 +135,7 @@ export class ProcessPhotos extends Component<Props, State> {
   }
 
   handleChange = (value) => {
+    this.pageNum = 0;
     this.setState({
       selectedOption: value
     })

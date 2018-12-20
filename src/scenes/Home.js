@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Header, Footer, Previews, ProcessPhotos } from '../components';
+import { Header, Footer, Previews, InitialPage, ProcessPhotos } from '../components';
 import styles from './Home.module.scss';
 import { connect } from 'react-redux';
 import { getHomeStatus } from '../selectors/Home';
@@ -12,6 +12,7 @@ export class Home extends PureComponent<Props> {
     return (
       <div className={styles.container}>
         <Header/>
+        {this.props.status === HOME_STATUS.initial && <InitialPage />}
         {this.props.status === HOME_STATUS.preview && <Previews/>}
         {this.props.status === HOME_STATUS.process && <ProcessPhotos/>}
         {/*<Footer/>*/}
