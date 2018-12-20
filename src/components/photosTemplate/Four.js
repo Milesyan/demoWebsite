@@ -12,7 +12,7 @@ type Props = {
 }
 export default class Four extends Component<Props> {
   renderFourHorizontalsWithText = (photos, text, date) => (
-    <div className={styles.FourVerticalsWithText}>
+    <div className={styles.FourHorizontalsWithText}>
       <div className={styles.photoText}>
         <DateTag date={date}/>
         <div style={{flex: 1, marginLeft: 98}}>
@@ -58,7 +58,7 @@ export default class Four extends Component<Props> {
   )
  
   renderFourHorizontals = (photos) => (
-    <div className={styles.FourVerticalsWithText}>
+    <div className={styles.FourHorizontalsWithText}>
       <div className={styles.photosWrapper}>
         {
           photos.map(photo=> (

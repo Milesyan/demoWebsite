@@ -3,7 +3,7 @@ import styles from './InitialPage.module.scss';
 import { Button, Input } from '../basicComponents';
 import { connect } from 'react-redux';
 import { queryBabyData } from '../actions/Photos';
-import { setHomeStatusProcess } from '../actions/Home';
+import { setHomeStatusPreview } from '../actions/Home';
 import { bindActionCreators } from 'redux';
 import { getPhotos } from '../selectors/Photos';
 
@@ -46,6 +46,10 @@ export class Initial extends Component<Props, State> {
     this.props.queryBabyData(babyId);
   }
 
+  debugLayout = () => {
+    this.props.setHomeStatusPreview();
+  }
+
   render() {
     return (
       <div className={styles.container} >
@@ -59,6 +63,9 @@ export class Initial extends Component<Props, State> {
         <Button onClick={this.getBabyData}>
           Confirm
         </Button>
+        <Button onClick={this.debugLayout}>
+          Debug Layout
+        </Button>
       </div>
     )
   }
@@ -70,6 +77,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   queryBabyData,
+  setHomeStatusPreview
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Initial);
