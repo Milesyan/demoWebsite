@@ -128,7 +128,7 @@ export class ProcessPhotos extends Component<Props, State> {
       group[j].push(Ele);
     }
     if (group[group.length-1].length === 1) {
-      const emptyPage = <div style={{ width: 2396,height: 3354, backgroundColor: 'white'}} />;
+      const emptyPage = <div key="empty" style={{ width: 2396,height: 3354, backgroundColor: 'white'}} />;
       group[group.length-1].push(emptyPage)
     }
     return group;

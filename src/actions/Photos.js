@@ -28,8 +28,12 @@ export function queryBabyData(babyId) {
   return async (dispatch) => {
     const res = await ApiClient.queryPhotosData(babyId);
     const data = JSON.parse(res.data.photobookData);
-    dispatch(setPosts(data.posts));
-    dispatch(setPhotos(data.photos_data));
-    dispatch(setHomeStatusPreview());
+    if (data) {
+      dispatch(setPosts(data.posts));
+      dispatch(setPhotos(data.photos_data));
+      dispatch(setHomeStatusPreview());
+    } else {
+      alert("Please input the correct baby ID");
+    }
   }
 }

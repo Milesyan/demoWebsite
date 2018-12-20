@@ -1,6 +1,8 @@
 
 import { HttpError, ServerError } from './errors';
 const BASEURL = 'http://localhost:5000';
+// const BASEURL = 'https://api.gongleyun.com:5000';
+
 const APIS = {
   graphql: 'baby_photo/graphql?'
 }
