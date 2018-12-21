@@ -58,7 +58,7 @@ export default class Six extends Component<Props> {
   )
  
   renderSixHorizontals = (photos) => (
-    <div className={styles.SixVerticalsWithText}>
+    <div className={styles.sixHorizontals}>
       <div className={styles.photosWrapper}>
         {
           photos.map(photo=> (
@@ -75,7 +75,7 @@ export default class Six extends Component<Props> {
   )
  
   renderSixVerticals = (photos) => (
-    <div className={styles.SixVerticalsWithText}>
+    <div className={styles.SixVerticals}>
       <div className={styles.photosWrapper}>
         {
           photos.map(photo=> (

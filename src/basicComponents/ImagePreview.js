@@ -14,7 +14,7 @@ export default class ImagePreview extends Component<Props> {
   }
 
   getImageData = (img) => {
-    if (this.counter > 20) {
+    if (this.counter > 50) {
       console.warn("FAIL");
       return;
     }
@@ -23,7 +23,7 @@ export default class ImagePreview extends Component<Props> {
     } else {
       setTimeout(() => {
         this.getImageData(img);
-      }, 1000);
+      }, 2000);
       this.counter += 1;
     }
   }

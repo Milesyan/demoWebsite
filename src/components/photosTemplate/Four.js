@@ -21,13 +21,13 @@ export default class Four extends Component<Props> {
       </div>
       <div className={styles.photosWrapper}>
         {
-          photos.map(photo=> (
+          photos.map((photo, idx)=> (
             <img
-            key={photo.id}
-            className={styles.image}
-            alt="nothing" 
-            src={photo.url}
-          />
+              key={photo.id}
+              className={idx < 2 ? styles.image : `${styles.image} ${styles.bottomImages}`}
+              alt="nothing" 
+              src={photo.url}
+            />
           ))
         }
       </div>
@@ -61,13 +61,13 @@ export default class Four extends Component<Props> {
     <div className={styles.FourHorizontalsWithText}>
       <div className={styles.photosWrapper}>
         {
-          photos.map(photo=> (
+          photos.map((photo, idx)=> (
             <img
-            key={photo.id}
-            className={styles.image}
-            alt="nothing" 
-            src={photo.url}
-          />
+              key={photo.id}
+              className={styles.image}
+              alt="nothing" 
+              src={photo.url}
+            />
           ))
         }
       </div>
@@ -100,9 +100,9 @@ export default class Four extends Component<Props> {
     const text = this.props.text;
     let renderer = null;
     if (mode === Symbol.for('horizontal') ) {
-      renderer = text ? this.renderFourVerticalsWithText : this.renderFourHorizontals;
+      renderer = text ? this.renderFourHorizontalsWithText : this.renderFourHorizontals;
     } else if (mode === Symbol.for('vertical')) {
-      renderer = text ? this.renderFourHorizontalsWithText : this.renderFourVerticals;
+      renderer = text ? this.renderFourVerticalsWithText : this.renderFourVerticals;
     } else {
       throw new Error('Invalid mode');
     }
