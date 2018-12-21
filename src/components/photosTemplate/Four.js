@@ -80,11 +80,11 @@ export default class Four extends Component<Props> {
         {
           photos.map(photo=> (
             <img
-            key={photo.id}
-            className={styles.image}
-            alt="nothing" 
-            src={photo.url}
-          />
+              key={photo.id}
+              className={styles.image}
+              alt="nothing" 
+              src={photo.url}
+            />
           ))
         }
       </div>
