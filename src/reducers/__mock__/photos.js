@@ -26,6 +26,8 @@ export const photoPosts = [
   genTestPost(100, [5,4,4,5], false),
   genTestPost(100, [1,2,3,6,7,7], true),
   genTestPost(100, [1,2,3,6,7,7], false),
+  genTestPost(100, [5,4,4,5,4,5], true),
+  genTestPost(100, [5,4,4,5,4,5], false),
   {
     id: 1,
     date: '2018-01-01',

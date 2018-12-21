@@ -12,10 +12,10 @@ type Props = {
 }
 export default class Six extends Component<Props> {
   renderSixHorizontalsWithText = (photos, text, date) => (
-    <div className={styles.SixVerticalsWithText}>
+    <div className={styles.SixHorizontalsWithText}>
       <div className={styles.photoText}>
         <DateTag date={date}/>
-        <div style={{flex: 1, marginLeft: 98}}>
+        <div className={styles.textContent}>
           {this.props.text}
         </div>
       </div>
@@ -44,10 +44,10 @@ export default class Six extends Component<Props> {
       </div>
       <div className={styles.photosWrapper}>
         {
-          photos.map(photo=> (
+          photos.map((photo, idx)=> (
             <img
             key={photo.id}
-            className={styles.image}
+            className={idx < 3 ? `${styles.image} ${styles.topImages}` : `${styles.image} ${styles.bottomImages}`}
             alt="nothing" 
             src={photo.url}
           />
@@ -100,9 +100,9 @@ export default class Six extends Component<Props> {
     const text = this.props.text;
     let renderer = null;
     if (mode === Symbol.for('horizontal') ) {
-      renderer = text ? this.renderSixVerticalsWithText : this.renderSixHorizontals;
+      renderer = text ? this.renderSixHorizontalsWithText : this.renderSixHorizontals;
     } else if (mode === Symbol.for('vertical')) {
-      renderer = text ? this.renderSixHorizontalsWithText : this.renderSixVerticals;
+      renderer = text ? this.renderSixVerticalsWithText : this.renderSixVerticals;
     } else {
       throw new Error('Invalid mode');
     }

@@ -58,7 +58,7 @@ export default class Four extends Component<Props> {
   )
  
   renderFourHorizontals = (photos) => (
-    <div className={styles.FourHorizontalsWithText}>
+    <div className={styles.fourHorizontals}>
       <div className={styles.photosWrapper}>
         {
           photos.map((photo, idx)=> (
@@ -75,7 +75,7 @@ export default class Four extends Component<Props> {
   )
  
   renderFourVerticals = (photos) => (
-    <div className={styles.FourVerticalsWithText}>
+    <div className={styles.fourVerticals}>
       <div className={styles.photosWrapper}>
         {
           photos.map(photo=> (

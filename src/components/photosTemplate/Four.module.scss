@@ -14,6 +14,7 @@
     display: flex;
     width: 100%;
     box-sizing: border-box;
+    align-items: baseline;
   }
   .photosWrapper {
     display: flex;
@@ -21,7 +22,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 204px;
+    margin-top: 150px;
     max-width: 763px*2 + 165px;
   }
   .image {
@@ -48,6 +49,7 @@
     display: flex;
     width: 100%;
     box-sizing: border-box;
+    align-items: baseline;
   }
   .photosWrapper {
     display: flex;
@@ -70,27 +72,58 @@
   }
 }
 
-.renderFourHorizontals {
+
+.fourHorizontals {
+  position: absolute;
+  top: 505px;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 100%;
+
+  .photosWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 931px*2 + 165px;
+  }
   .image {
-    height: 709px;
-    max-width: 1263px; 
-    object-fit: contain
+    margin: 30px;
+    max-height: 700px;
+    width: 931px;
+    align-self: flex-end;
+    object-fit: contain;
+  }
+  .bottomImages {
+    align-self: flex-start;
   }
 }
-.FourVerticalImgsWrapper {
+
+.fourVerticals {
+  position: absolute;
+  top: 505px;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  height: 100%;
-  .image {
-    width: 599px;
-    max-height: 1071px;
-    object-fit: contain
+
+  .photosWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 763px*2 + 165px;
   }
+  .image {
+    margin: 30px;
+    height: 1017px;
+    max-width: 763px;
+    object-fit: contain;
+  }
+  
 }
