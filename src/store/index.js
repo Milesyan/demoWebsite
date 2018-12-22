@@ -1,10 +1,14 @@
 import rootReduer from '../reducers';
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleWare from 'redux-saga';
+import rootSaga from '../sagas/index'
+const sagaMiddleWare = createSagaMiddleWare()
 
 const store = createStore(
   rootReduer,
-  applyMiddleware(thunk)
+  applyMiddleware(sagaMiddleWare)
 );
+
+sagaMiddleWare.run(rootSaga);
 
 export default store;

@@ -1,7 +1,4 @@
-import ApiClient from '../network/ApiClient';
 import { ActionTypes } from './ActionTypes';
-import { setHomeStatusPreview } from './Home';
-import { ServerError } from '../network/errors';
 
 export function updateImageInfo(id, width, height) {
   return {
@@ -25,15 +22,8 @@ export function setPhotos(photos) {
 }
 
 export function queryBabyData(babyId) {
-  return async (dispatch) => {
-    const res = await ApiClient.queryPhotosData(babyId);
-    const data = JSON.parse(res.data.photobookData);
-    if (data) {
-      dispatch(setPosts(data.posts));
-      dispatch(setPhotos(data.photos_data));
-      dispatch(setHomeStatusPreview());
-    } else {
-      alert("Please input the correct baby ID");
-    }
+  return {
+    type: ActionTypes.QUERY_BABY_DATA,
+    payload: babyId
   }
 }
