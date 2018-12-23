@@ -10,11 +10,14 @@ export function* watchQueryPhotoData() {
 }
 
 function* queryPhotoData(action) {
-  const res = yield call(ApiClient.queryPhotosData.bind(ApiClient), action.payload )
+  const res = yield apply(ApiClient, ApiClient.queryPhotosData, [action.payload])
   const data = JSON.parse(res.data.photobookData);
-  if (data) {
+  if (data && data.posts) {
     yield put(setPosts(data.posts));
     yield put(setPhotos(data.photos_data));
     yield put(setHomeStatusPreview())
+  } else {
+    console.error("NO DATA FETCHED FROM SERVER")
+    alert("no data fetched from server")
   }
 }
