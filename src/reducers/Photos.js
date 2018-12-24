@@ -1,11 +1,10 @@
 import { ActionTypes } from '../actions/ActionTypes';
-import { photoPosts, photos } from './__mock__/photos';
 import produce from "immer"
 
 
 const defaultState = {
-  photoPosts,
-  photoEntities: photos
+  photoPosts: null,
+  photoEntities: null
 }
 const Home = (state = defaultState, action) => {
   switch (action.type) {

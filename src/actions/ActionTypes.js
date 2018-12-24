@@ -1,6 +1,7 @@
 export const ActionTypes = {
   SET_POSTS: Symbol(),
   SET_PHOTOS: Symbol(),
+  SET_DEBUG_DATA: Symbol(),
   QUERY_BABY_DATA: Symbol(),
   UPDATE_IMAGE_INFO: Symbol(),
   SET_HOME_STATUS_PREVIEW: Symbol(),

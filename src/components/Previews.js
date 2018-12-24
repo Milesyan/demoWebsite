@@ -20,14 +20,14 @@ type State = {
 }
 
 export class Previews extends Component<Props, State> {
-  componentDidUpdate = (prevProps, prevState) => {
-    if (this.props.photos !== prevProps.photos) {
-      const photoLoaded = !Object.values(this.props.photos).map(p=>(p.width && p.height) || -1).includes(-1)
-      if (photoLoaded) {
-        this.props.setHomeStatusProcess()
-      }
-    }
-  }
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   if (this.props.photos !== prevProps.photos) {
+  //     const photoLoaded = !Object.values(this.props.photos).map(p=>(p.width && p.height) || -1).includes(-1)
+  //     if (photoLoaded) {
+  //       this.props.setHomeStatusProcess()
+  //     }
+  //   }
+  // }
   
   onDownloadPDF = () => {
     domtoimage.toBlob(document.getElementById('example'), {width: 2480, height: 3354})

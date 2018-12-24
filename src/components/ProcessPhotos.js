@@ -104,8 +104,8 @@ export class ProcessPhotos extends Component<Props, State> {
         }
       } else if (horizontals.length > 6) {
         this._pushPhotoBookElementToRes(horizontals.slice(0, 6), res, Symbol.for('horizontal'), date, text)
-        this._pushPhotoBookElementToRes(horizontals.slice(6), res, Symbol.for('horizontal'), date, text)
-        this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date, text)
+        this._pushPhotoBookElementToRes(horizontals.slice(6), res, Symbol.for('horizontal'), date)
+        this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date)
       } else if (verticals.length > 6) {
         this._pushPhotoBookElementToRes(verticals.slice(0, 6), res, Symbol.for('vertical'), date, text)
         this._pushPhotoBookElementToRes(verticals.slice(6), res, Symbol.for('vertical'), date, text)

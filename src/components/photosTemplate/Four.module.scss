@@ -62,10 +62,10 @@
   }
   .image {
     margin: 30px;
-    max-height: 700px;
+    max-height: 1000px;
     width: 931px;
     align-self: flex-end;
-    object-fit: contain;
+    object-fit: cover;
   }
   .bottomImages {
     align-self: flex-start;
@@ -92,10 +92,10 @@
   }
   .image {
     margin: 30px;
-    max-height: 700px;
+    max-height: 1000px;
     width: 931px;
     align-self: flex-end;
-    object-fit: contain;
+    object-fit: cover;
   }
   .bottomImages {
     align-self: flex-start;

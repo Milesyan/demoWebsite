@@ -27,3 +27,9 @@ export function queryBabyData(babyId) {
     payload: babyId
   }
 }
+
+export function setDebugData() {
+  return {
+    type: ActionTypes.SET_DEBUG_DATA
+  }
+}

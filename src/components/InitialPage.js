@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import styles from './InitialPage.module.scss';
 import { Button, Input } from '../basicComponents';
 import { connect } from 'react-redux';
-import { queryBabyData } from '../actions/Photos';
-import { setHomeStatusPreview } from '../actions/Home';
+import { queryBabyData, setDebugData } from '../actions/Photos';
 import { bindActionCreators } from 'redux';
 import { getPhotos } from '../selectors/Photos';
 
 
 type Props = {
-  queryBabyData: typeof queryBabyData
+  queryBabyData: typeof queryBabyData,
+  setDebugData: typeof setDebugData
 }
 
 type State = {
@@ -22,14 +22,6 @@ export class Initial extends Component<Props, State> {
     this.state = {
       babyId: null
     }
-  }
-  componentDidUpdate = (prevProps, prevState) => {
-    // if (this.props.photos !== prevProps.photos) {
-    //   const photoLoaded = !Object.values(this.props.photos).map(p=>p.width && p.height).includes(null)
-    //   if (photoLoaded) {
-    //     this.props.setHomeStatusProcess()
-    //   }
-    // }
   }
   
   onChange = (e) => {
@@ -47,7 +39,7 @@ export class Initial extends Component<Props, State> {
   }
 
   debugLayout = () => {
-    this.props.setHomeStatusPreview();
+    this.props.setDebugData();
   }
 
   render() {
@@ -77,7 +69,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   queryBabyData,
-  setHomeStatusPreview
+  setDebugData
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Initial);

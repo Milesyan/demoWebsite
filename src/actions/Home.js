@@ -11,9 +11,3 @@ export function setHomeStatusProcess() {
     type: ActionTypes.SET_HOME_STATUS_PROCESS,
   };
 }
-
-export function showRequestInviteDone() {
-  return {
-    type: ActionTypes.SET_HOME_STATUS_DONE,
-  };
-}

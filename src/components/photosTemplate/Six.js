@@ -78,10 +78,10 @@ export default class Six extends Component<Props> {
     <div className={styles.SixVerticals}>
       <div className={styles.photosWrapper}>
         {
-          photos.map(photo=> (
+          photos.map((photo, idx) => (
             <img
             key={photo.id}
-            className={styles.image}
+            className={idx < 3 ? `${styles.image} ${styles.topImages}` : `${styles.image} ${styles.bottomImages}`}
             alt="nothing" 
             src={photo.url}
           />

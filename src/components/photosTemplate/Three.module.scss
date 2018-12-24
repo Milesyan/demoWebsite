@@ -25,14 +25,14 @@
   }
   .left {
     width: 599px;
-    max-height: 1071px;
+    max-height: 1571px;
     object-fit: contain;
     object-position: top;
   }
   
   .right {
     width: 599px;
-    max-height: 1071px;
+    max-height: 1571px;
     margin-left: 65px;
     object-fit: contain;
     object-position: top;
@@ -92,9 +92,15 @@
   align-items: center;
   flex-direction: row;
   height: 100%;
+  .photosWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
   .image {
     width: 599px;
-    max-height: 1071px;
+    max-height: 1571px;
     object-fit: contain
   }
 }

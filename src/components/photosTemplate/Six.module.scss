@@ -1,3 +1,10 @@
+.topImages {
+  align-self: flex-end;
+}
+
+.bottomImages {
+  align-self: flex-start;
+}
 
 .SixVerticalsWithText {
   position: absolute;
@@ -34,15 +41,6 @@
     width: 599px;
     object-fit: contain;
   }
-
-  .topImages {
-    align-self: flex-end;
-  }
-
-  .bottomImages {
-    align-self: flex-start;
-  }
-  
 }
 
 
@@ -78,9 +76,10 @@
   }
   .image {
     margin: 30px;
-    max-height: 700px;
+    max-height: 1000px;
     width: 931px;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
   }
 }
 
@@ -102,9 +101,10 @@
   }
   .image {
     margin: 30px;
-    max-height: 700px;
+    max-height: 1000px;
     width: 931px;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
   }
 }
 .SixVerticals {
@@ -126,8 +126,9 @@
   }
   .image {
     margin: 30px;
-    max-height: 796px;
+    max-height: 1000px;
     width: 599px;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
   }
 }

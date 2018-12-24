@@ -40,7 +40,7 @@ export default class ApiClient {
       method: 'POST',
       headers: {
         "Content-type": "application/json",
-        "Authorization": "QWeUhsPdG3y5cxr5J4NHC3eJsQeZoK-rHCM4JkEOeHlbPxPeO5PNYMUb3ZdcXg6H"
+        "Authorization": "QWeUhsPdG3y5cxr5J4NHCxB79bdKife04x9EJ7nbq9FbPxPeO5PNYMUb3ZdcXg6H"
       },
       body: JSON.stringify({
         query: gql,

@@ -100,26 +100,29 @@ export default class Three extends Component<Props> {
  
   renderThreeVerticals = (photos) => (
     <div className={styles.ThreeVerticalImgsWrapper}>
-      <img
-        key={photos[0].id}
-        className={styles.image}
-        alt="nothing" 
-        src={photos[0].url}
-      />
-      <img
-        key={photos[1].id}
-        className={styles.image}
-        style={{marginLeft: 67}}
-        alt="nothing" 
-        src={photos[1].url}
-      />
-      <img
-        key={photos[2].id}
-        className={styles.image}
-        style={{marginLeft: 67}}
-        alt="nothing" 
-        src={photos[2].url}
-      />
+
+    <div className={styles.photosWrapper}>
+        <img
+          key={photos[0].id}
+          className={styles.image}
+          alt="nothing" 
+          src={photos[0].url}
+        />
+        <img
+          key={photos[1].id}
+          className={styles.image}
+          style={{marginLeft: 67}}
+          alt="nothing" 
+          src={photos[1].url}
+        />
+        <img
+          key={photos[2].id}
+          className={styles.image}
+          style={{marginLeft: 67}}
+          alt="nothing" 
+          src={photos[2].url}
+        />
+      </div>
   </div>
   )
 
