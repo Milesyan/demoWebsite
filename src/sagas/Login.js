@@ -35,12 +35,10 @@ export function* loginFlow() {
 }
 
 export function* checkToken() {
-  yield takeEvery(ActionTypes.CHECK_TOKEN, _checkToken)
-}
-
-function* _checkToken() {
-  const token = yield apply(Storage, Storage.getUserToken)
-  if (token) {
-    yield put(setHomeLoginDialogStatus(false))
-  }
+  yield takeEvery(ActionTypes.CHECK_TOKEN, function* () {
+    const token = yield apply(Storage, Storage.getUserToken)
+    if (token) {
+      yield put(setHomeLoginDialogStatus(false))
+    }
+  })
 }

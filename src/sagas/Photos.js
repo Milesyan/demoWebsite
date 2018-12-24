@@ -3,11 +3,10 @@ import { call, put, apply, take, all } from 'redux-saga/effects';
 import ApiClient from '../network/ApiClient';
 import { ActionTypes } from '../actions/ActionTypes';
 import { setPhotos, setPosts, setBaby } from '../actions/Photos'
-import { setHomeStatusPreview, setHomeStatusProcess, setHomeStatusInitial } from '../actions/Home';
+import { setHomeStatusPreview, setHomeStatusProcess, setHomeStatusInitial, setHomeLoginDialogStatus} from '../actions/Home';
 import { photos as mockPhotos, photoPosts as mockPosts } from '../reducers/__mock__/photos';
 import { baby as mockBaby } from '../reducers/__mock__/baby';
-
-
+import Storage from '../localStorage';
 
 function* queryPhotoData(action) {
   try {
@@ -20,7 +19,14 @@ function* queryPhotoData(action) {
         put(setBaby(data.baby_data))
       ])
     } else {
-      alert("no data fetched from server")
+      if (data.errmsg === "authorization expired") {
+        alert("Token Expired")
+        yield apply(Storage, Storage.clearUserToken);
+        yield put(setHomeLoginDialogStatus(true))
+
+      } else {
+        alert("no data fetched from server")
+      }
     }
   } catch (e){
     alert("Failed to fetch data");
