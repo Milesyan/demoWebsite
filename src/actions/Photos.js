@@ -21,6 +21,13 @@ export function setPhotos(photos) {
   }
 }
 
+export function setBaby(baby) {
+  return {
+    type: ActionTypes.SET_BABY,
+    payload: baby
+  }
+}
+
 export function queryBabyData(babyId) {
   return {
     type: ActionTypes.QUERY_BABY_DATA,

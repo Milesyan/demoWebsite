@@ -1,17 +1,19 @@
 import { ActionTypes } from '../actions/ActionTypes';
-import { baby } from './__mock__/baby';
+import produce from 'immer';
 
 const initialState = {
-  baby
+  baby: null
 }
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+    case ActionTypes.SET_BABY:
+      const postState = produce(state, draft => {
+        draft.baby = payload
+      })
+      return postState;
 
-  case ActionTypes.SET_BABY_INFO:
-    return { ...state, ...payload }
-
-  default:
-    return state
+    default:
+      return state
   }
 }

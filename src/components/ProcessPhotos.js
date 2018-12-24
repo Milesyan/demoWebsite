@@ -118,6 +118,9 @@ export class ProcessPhotos extends Component<Props, State> {
 
 
   groupByEveryTwo = (pages) => {
+    if (!pages || !pages.length){
+      return []
+    }
     let group = [];
     for (let i=0, j=0; i < pages.length; i++) {
       const Ele = pages[i];
