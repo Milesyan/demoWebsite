@@ -64,11 +64,12 @@ export class ProcessPhotos extends Component<Props, State> {
 
   _pushPhotoBookElementToRes = (elements, res, mode, date, text=null) => {
     if (!elements || !elements.length) {
-      return;
+      return false;
     }
     const key = elements.map(e=>e.id).reduce((p,v)=> p + '-' + v, '')
     this.pageNum += 1;
     res.push(<PhotobookPage key={key} photos={elements} mode={mode} text={text} date={date} pageNum={this.pageNum}/>)
+    return true
   }
 
   _pushMonthElementToRes = (res, year, month, baby) => {
@@ -96,20 +97,20 @@ export class ProcessPhotos extends Component<Props, State> {
       }
       if (horizontals.length <= 6 && verticals.length <= 6) {
         if (firstPhotomode === Symbol.for('horizontal')) {
-          this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
-          this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date)
+          const shownDate = this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
+          this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date, shownDate ? Symbol.for('Null') : text)
         } else {
-          this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date, text)
-          this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date)
+          const shownDate = this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date, text)
+          this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date, shownDate ? Symbol.for('Null'): text)
         }
       } else if (horizontals.length > 6) {
-        this._pushPhotoBookElementToRes(horizontals.slice(0, 6), res, Symbol.for('horizontal'), date, text)
-        this._pushPhotoBookElementToRes(horizontals.slice(6), res, Symbol.for('horizontal'), date)
-        this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date)
+        let shownDate = this._pushPhotoBookElementToRes(horizontals.slice(0, 6), res, Symbol.for('horizontal'), date, text)
+        shownDate = shownDate && this._pushPhotoBookElementToRes(horizontals.slice(6), res, Symbol.for('horizontal'), date, shownDate ? Symbol.for('Null') : text)
+        this._pushPhotoBookElementToRes(verticals, res, Symbol.for('vertical'), date, shownDate ? Symbol.for('Null') : text)
       } else if (verticals.length > 6) {
-        this._pushPhotoBookElementToRes(verticals.slice(0, 6), res, Symbol.for('vertical'), date, text)
-        this._pushPhotoBookElementToRes(verticals.slice(6), res, Symbol.for('vertical'), date, text)
-        this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date, text)
+        let shownDate = this._pushPhotoBookElementToRes(verticals.slice(0, 6), res, Symbol.for('vertical'), date, text)
+        shownDate = shownDate && this._pushPhotoBookElementToRes(verticals.slice(6), res, Symbol.for('vertical'), date,  shownDate ? Symbol.for('Null') : text)
+        this._pushPhotoBookElementToRes(horizontals, res, Symbol.for('horizontal'), date,  shownDate ? Symbol.for('Null') : text)
       }
     }
     const r = [<Cover/>, <FirstPage/>].concat(this.groupByEveryTwo(res));

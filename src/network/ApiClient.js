@@ -1,9 +1,9 @@
 
 import { HttpError, ServerError } from './errors';
-const BASEURL = 'http://localhost:5000';
-const token = '7C0MJzDi772ZPLIIH6R3AF96IXV3QszzC1D1uTjdL8xGRJPwkKJ3ZII-TgrJDmdE';
-// const BASEURL = 'https://api.gongleyun.com:5000';
-// const token = 'QWeUhsPdG3y5cxr5J4NHCxB79bdKife04x9EJ7nbq9FbPxPeO5PNYMUb3ZdcXg6H'
+// const BASEURL = 'http://localhost:5000';
+// const token = '7C0MJzDi772ZPLIIH6R3AF96IXV3QszzC1D1uTjdL8xGRJPwkKJ3ZII-TgrJDmdE';
+const BASEURL = 'https://api.gongleyun.com:5000';
+const token = 'QWeUhsPdG3y5cxr5J4NHCxB79bdKife04x9EJ7nbq9FbPxPeO5PNYMUb3ZdcXg6H'
 const APIS = {
   graphql: 'baby_photo/graphql?'
 }

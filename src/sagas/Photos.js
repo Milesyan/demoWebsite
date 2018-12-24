@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest } from 'redux-saga';
+import { takeEvery, takeLatest, delay } from 'redux-saga';
 import { call, put, apply, take, all } from 'redux-saga/effects';
 import ApiClient from '../network/ApiClient';
 import { ActionTypes } from '../actions/ActionTypes';
@@ -31,7 +31,12 @@ function* queryPhotoData(action) {
 }
 
 export function* watchUpdatePhotos() {
-  const photos = yield take(ActionTypes.SET_PHOTOS);
+  const [photos, posts, baby] = yield all([
+    take(ActionTypes.SET_PHOTOS),
+    take(ActionTypes.SET_POSTS),
+    take(ActionTypes.SET_BABY),
+  ])
+  yield call(delay, 1000)
   yield put(setHomeStatusPreview())
   const photoLength = Object.keys(photos.payload).length
   for (let i=0; i < photoLength; i++) {

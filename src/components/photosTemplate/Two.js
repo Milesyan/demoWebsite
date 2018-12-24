@@ -106,9 +106,9 @@ export default class Two extends Component<Props> {
     const text = this.props.text;
     let renderer = null;
     if (mode === Symbol.for('horizontal') ) {
-      renderer = text ? this.renderTwoHorizontalsWithText : this.renderTwoHorizontals;
+      renderer = text !== Symbol.for('Null') ? this.renderTwoHorizontalsWithText : this.renderTwoHorizontals;
     } else if (mode === Symbol.for('vertical')) {
-      renderer = text ? this.renderTwoVerticalsWithText : this.renderTwoVerticals;
+      renderer = text !== Symbol.for('Null') ? this.renderTwoVerticalsWithText : this.renderTwoVerticals;
     } else {
       throw new Error('Invalid mode');
     }

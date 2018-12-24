@@ -81,9 +81,9 @@ export default class One extends Component<Props> {
     const text = this.props.text;
     let renderer = null;
     if (mode === Symbol.for('horizontal') ) {
-      renderer = text ? this.renderOneHorizontalsWithText : this.renderOneHorizontals;
+      renderer = text !== Symbol.for('Null') ? this.renderOneHorizontalsWithText : this.renderOneHorizontals;
     } else if (mode === Symbol.for('vertical')) {
-      renderer = text ? this.renderOneVerticalsWithText : this.renderOneVerticals;
+      renderer = text !== Symbol.for('Null') ? this.renderOneVerticalsWithText : this.renderOneVerticals;
     } else {
       throw new Error('Invalid mode');
     }

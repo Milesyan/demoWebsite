@@ -100,9 +100,9 @@ export default class Six extends Component<Props> {
     const text = this.props.text;
     let renderer = null;
     if (mode === Symbol.for('horizontal') ) {
-      renderer = text ? this.renderSixHorizontalsWithText : this.renderSixHorizontals;
+      renderer = text !== Symbol.for('Null') ? this.renderSixHorizontalsWithText : this.renderSixHorizontals;
     } else if (mode === Symbol.for('vertical')) {
-      renderer = text ? this.renderSixVerticalsWithText : this.renderSixVerticals;
+      renderer = text !== Symbol.for('Null') ? this.renderSixVerticalsWithText : this.renderSixVerticals;
     } else {
       throw new Error('Invalid mode');
     }

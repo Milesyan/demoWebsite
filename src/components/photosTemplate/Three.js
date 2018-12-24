@@ -135,9 +135,9 @@ export default class Three extends Component<Props> {
     const text = this.props.text;
     let renderer = null;
     if (mode === Symbol.for('horizontal') ) {
-      renderer = text ? this.renderThreeHorizontalsWithText : this.renderThreeHorizontals;
+      renderer = text !== Symbol.for('Null') ? this.renderThreeHorizontalsWithText : this.renderThreeHorizontals;
     } else if (mode === Symbol.for('vertical')) {
-      renderer = text ? this.renderThreeVerticalsWithText : this.renderThreeVerticals;
+      renderer = text !== Symbol.for('Null') ? this.renderThreeVerticalsWithText : this.renderThreeVerticals;
     } else {
       throw new Error('Invalid mode');
     }

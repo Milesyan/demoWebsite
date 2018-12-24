@@ -100,9 +100,9 @@ export default class Four extends Component<Props> {
     const text = this.props.text;
     let renderer = null;
     if (mode === Symbol.for('horizontal') ) {
-      renderer = text ? this.renderFourHorizontalsWithText : this.renderFourHorizontals;
+      renderer = text !== Symbol.for('Null') ? this.renderFourHorizontalsWithText : this.renderFourHorizontals;
     } else if (mode === Symbol.for('vertical')) {
-      renderer = text ? this.renderFourVerticalsWithText : this.renderFourVerticals;
+      renderer = text !== Symbol.for('Null') ? this.renderFourVerticalsWithText : this.renderFourVerticals;
     } else {
       throw new Error('Invalid mode');
     }
