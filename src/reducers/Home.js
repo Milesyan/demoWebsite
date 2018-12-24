@@ -1,23 +1,39 @@
 import { ActionTypes } from '../actions/ActionTypes';
+import produce from 'immer';
+
 export const HOME_STATUS = {
-  initial: Symbol(),
-  preview: Symbol(),
-  process: Symbol(),
-  done: Symbol()
+  initial: Symbol('initial'),
+  preview: Symbol('preview'),
+  process: Symbol('process'),
+  done: Symbol('done')
 }
 const defaultState = {
-  status: HOME_STATUS.initial
+  status: HOME_STATUS.initial,
+  showLoginDialog: true
 }
-const Home = (state = defaultState, action) => {
-  switch (action.type) {
+const Home = (state = defaultState, { type, payload }) => {
+
+  switch (type) {
     case ActionTypes.SET_HOME_STATUS_INITIAL:
-      return { status: HOME_STATUS.initial };
+      return produce(state, draft=>{
+        draft.status = HOME_STATUS.initial
+      })
     case ActionTypes.SET_HOME_STATUS_PREVIEW:
-      return { status: HOME_STATUS.preview };
+      return produce(state, draft=>{
+        draft.status = HOME_STATUS.preview
+      })
     case ActionTypes.SET_HOME_STATUS_PROCESS:
-      return { status: HOME_STATUS.process };
+      return produce(state, draft=>{
+        draft.status = HOME_STATUS.process
+      })
     case ActionTypes.SET_HOME_STATUS_DONE:
-      return { status: HOME_STATUS.done };
+      return produce(state, draft=>{
+        draft.status = HOME_STATUS.done
+      })
+    case ActionTypes.SET_LOGIN_DIALOG:
+      return produce(state, draft => {
+        draft.showLoginDialog = payload
+      })
     default:
       return state;
   }

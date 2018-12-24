@@ -10,4 +10,8 @@ export const ActionTypes = {
   SET_HOME_STATUS_PREVIEW: Symbol('home preview'),
   SET_HOME_STATUS_PROCESS: Symbol('home process'),
   SET_HOME_STATUS_DONE: Symbol('home done'),
+  SET_LOGIN_DIALOG: Symbol('set login dialog'),
+  LOGIN: Symbol('Login'),
+  LOGOUT: Symbol('Logout'),
+  CHECK_TOKEN: Symbol('check token'),
 }

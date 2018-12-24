@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import { queryBabyData, setDebugData } from '../actions/Photos';
 import { bindActionCreators } from 'redux';
 import { getPhotos } from '../selectors/Photos';
-
+import { getShowLoginDialogStatus } from '../selectors/Home';
+import { LoginDialog } from './index';
 
 type Props = {
+  getShowLoginDialogStatus: boolean,
   queryBabyData: typeof queryBabyData,
   setDebugData: typeof setDebugData
 }
@@ -45,6 +47,7 @@ export class Initial extends Component<Props, State> {
   render() {
     return (
       <div className={styles.container} >
+        {this.props.showDialog && <LoginDialog/>}
         <input
           className={styles.input}
           style={{width: '30%', marginTop: '20%'}}
@@ -64,7 +67,8 @@ export class Initial extends Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-  photos: getPhotos(state)
+  photos: getPhotos(state),
+  showDialog: getShowLoginDialogStatus(state)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

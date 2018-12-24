@@ -24,3 +24,10 @@ export function reset() {
     type: ActionTypes.RESET
   }
 }
+
+export function setHomeLoginDialogStatus(status) {
+  return {
+    type: ActionTypes.SET_LOGIN_DIALOG,
+    payload: status
+  }
+}

@@ -59,6 +59,8 @@ export function* watchUpdatePhotos() {
         yield take(ActionTypes.UPDATE_IMAGE_INFO)
       }
       yield put(setHomeStatusProcess())
+    } else {
+      console.error("NO PHOTOS FETCHED FROM SERVER");
     }
   }
 }
