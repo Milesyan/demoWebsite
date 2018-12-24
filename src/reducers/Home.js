@@ -10,6 +10,8 @@ const defaultState = {
 }
 const Home = (state = defaultState, action) => {
   switch (action.type) {
+    case ActionTypes.SET_HOME_STATUS_INITIAL:
+      return { status: HOME_STATUS.initial };
     case ActionTypes.SET_HOME_STATUS_PREVIEW:
       return { status: HOME_STATUS.preview };
     case ActionTypes.SET_HOME_STATUS_PROCESS:

@@ -3,14 +3,11 @@ import { call, put, apply, take, all } from 'redux-saga/effects';
 import ApiClient from '../network/ApiClient';
 import { ActionTypes } from '../actions/ActionTypes';
 import { setPhotos, setPosts, setBaby } from '../actions/Photos'
-import { setHomeStatusPreview, setHomeStatusProcess } from '../actions/Home';
+import { setHomeStatusPreview, setHomeStatusProcess, setHomeStatusInitial } from '../actions/Home';
 import { photos as mockPhotos, photoPosts as mockPosts } from '../reducers/__mock__/photos';
 import { baby as mockBaby } from '../reducers/__mock__/baby';
 
 
-export function* watchQueryPhotoData() {
-  yield takeLatest(ActionTypes.QUERY_BABY_DATA, queryPhotoData)
-}
 
 function* queryPhotoData(action) {
   try {
@@ -30,28 +27,47 @@ function* queryPhotoData(action) {
   }
 }
 
-export function* watchUpdatePhotos() {
-  const [photos, posts, baby] = yield all([
-    take(ActionTypes.SET_PHOTOS),
-    take(ActionTypes.SET_POSTS),
-    take(ActionTypes.SET_BABY),
+function* setDebugData() {
+  yield all([
+    yield put(setPosts(mockPosts)),
+    yield put(setPhotos(mockPhotos)),
+    yield put(setBaby(mockBaby))
   ])
-  yield call(delay, 1000)
-  yield put(setHomeStatusPreview())
-  const photoLength = Object.keys(photos.payload).length
-  for (let i=0; i < photoLength; i++) {
-    yield take(ActionTypes.UPDATE_IMAGE_INFO)
+}
+
+export function* watchReset() {
+  yield takeEvery(ActionTypes.RESET, function* () {
+    yield all([
+      put(setPosts(null)),
+      put(setPhotos(null)),
+      put(setBaby(null))
+    ])
+    yield put(setHomeStatusInitial())
+  })
+}
+
+export function* watchUpdatePhotos() {
+  while (true) {
+    const [photos] = yield all([
+      take(ActionTypes.SET_PHOTOS),
+      take(ActionTypes.SET_POSTS),
+      take(ActionTypes.SET_BABY),
+    ])
+    if (photos && photos.payload && Object.keys(photos.payload).length) {
+      yield put(setHomeStatusPreview())
+      for (let i=0; i < Object.keys(photos.payload).length; i++) {
+        yield take(ActionTypes.UPDATE_IMAGE_INFO)
+      }
+      yield put(setHomeStatusProcess())
+    }
   }
-  yield put(setHomeStatusProcess())
+}
+
+export function* watchQueryPhotoData() {
+  yield takeLatest(ActionTypes.QUERY_BABY_DATA, queryPhotoData)
 }
 
 export function* watchUpdateDebugPhotos() {
   yield takeLatest(ActionTypes.SET_DEBUG_DATA, setDebugData)
 }
 
-function* setDebugData() {
-  yield put(setPosts(mockPosts));
-  yield put(setPhotos(mockPhotos));
-  yield put(setBaby(mockBaby));
-  yield put(setHomeStatusPreview())
-}

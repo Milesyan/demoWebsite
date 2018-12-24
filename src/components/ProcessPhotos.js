@@ -4,6 +4,7 @@ import { PhotobookPage } from '.';
 import { Button } from '../basicComponents';
 import { connect } from 'react-redux';
 import { updateImageInfo } from '../actions/Photos';
+import { reset }from '../actions/Home';
 import { bindActionCreators } from 'redux';
 import { getPostsWithPhotos } from '../selectors/Photos';
 import { getBaby } from '../selectors/Baby';
@@ -48,6 +49,11 @@ export class ProcessPhotos extends Component<Props, State> {
     }
 
   }
+
+  onReset = () => {
+    this.props.reset()
+  }
+
 
   saveOnePhotoPage = (node, idx) => {
     // First Page is larger than others
@@ -152,6 +158,9 @@ export class ProcessPhotos extends Component<Props, State> {
           <Button onClick={this.onDownloadPDF} style={{margin: 0}}>
             Export
           </Button>
+          <Button onClick={this.onReset} style={{margin: 0}}>
+            Reset
+          </Button>
           <div style={{width: 200, textAlign: 'center'}}>
             Total Pages: {photoGroups.length}
           </div>
@@ -192,7 +201,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  updateImageInfo
+  updateImageInfo,
+  reset
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProcessPhotos);
