@@ -23,12 +23,13 @@ function* queryPhotoData(action) {
         alert("Token Expired")
         yield apply(Storage, Storage.clearUserToken);
         yield put(setHomeLoginDialogStatus(true))
-
       } else {
         alert("no data fetched from server")
       }
     }
   } catch (e){
+    yield apply(Storage, Storage.clearUserToken);
+    yield put(setHomeLoginDialogStatus(true))
     alert("Failed to fetch data");
   }
 }

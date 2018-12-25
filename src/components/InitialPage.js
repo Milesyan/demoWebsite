@@ -51,7 +51,7 @@ export class Initial extends Component<Props, State> {
         <input
           className={styles.input}
           style={{width: '30%', marginTop: '20%'}}
-          placeholder="Baby ID"
+          placeholder="BabyId(eg: id58) or secret code(eg: AEF123)"
           onChange={this.onChange}
           type="number"
         />

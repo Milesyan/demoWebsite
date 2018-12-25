@@ -10,7 +10,7 @@ type Props = {
   status: HOME_STATUS
 }
 export class Home extends PureComponent<Props> {
-  
+
   componentWillMount() {
     this.props.checkToken()
   }

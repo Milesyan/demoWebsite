@@ -1,18 +1,15 @@
-export default class Storage {
-
-  USER_TOKEN = 'USER_TOKEN'
-
+export default class Storage {  
   static saveUserToken(tk) {
-    localStorage.setItem(this.USER_TOKEN, tk)
+    localStorage.setItem('USER_TOKEN', tk)
     return true
   }
 
   static clearUserToken() {
-    localStorage.removeItem(this.USER_TOKEN)
+    localStorage.removeItem('USER_TOKEN')
     return true;
   }
 
   static getUserToken() {
-    return localStorage.getItem(this.USER_TOKEN)
+    return localStorage.getItem('USER_TOKEN')
   }
 }

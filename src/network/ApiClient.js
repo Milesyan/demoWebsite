@@ -1,13 +1,18 @@
 
 import { HttpError, ServerError } from './errors';
-const BASEURL = 'http://localhost:5000';
-const token = '7C0MJzDi772ZPLIIH6R3AF96IXV3QszzC1D1uTjdL8xGRJPwkKJ3ZII-TgrJDmdE';
-// const BASEURL = 'https://api.gongleyun.com:5000';
+import Storage from '../localStorage';
+
+// const BASEURL = 'http://localhost:5000';
+// const token = '7C0MJzDi772ZPLIIH6R3AF96IXV3QszzC1D1uTjdL8xGRJPwkKJ3ZII-TgrJDmdE';
+const BASEURL = 'https://api.gongleyun.com:5000';
 // const token = 'QWeUhsPdG3y5cxr5J4NHCxB79bdKife04x9EJ7nbq9FbPxPeO5PNYMUb3ZdcXg6H'
 const APIS = {
   graphql: 'baby_photo/graphql?'
 }
 
+const getToken = () => {
+  return Storage.getUserToken()
+}
 
 export default class ApiClient {
 
@@ -35,14 +40,12 @@ export default class ApiClient {
     return data;
   }
 
-  static async query(gql, variables) {
+  static async query(gql, variables, needToken=true) {
     const url = `${BASEURL}/${APIS.graphql}`;
+    const headers = needToken ? {"Content-type": "application/json",  "Authorization": getToken()} : {"Content-type": "application/json"};
     const init = {
       method: 'POST',
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": token
-      },
+      headers: headers,
       body: JSON.stringify({
         query: gql,
         variables: ""
@@ -55,7 +58,7 @@ export default class ApiClient {
   static async queryPhotosData(babyId) {
     const gql = 
     `query {
-        photobookData(babyId: ${babyId})
+        photobookData(babyId: "${babyId}")
       }
     `;
     const variables = {
@@ -71,6 +74,6 @@ export default class ApiClient {
         token
       }
     }`
-    return await this.query(gql);
+    return await this.query(gql, null, false);
   }
 }
