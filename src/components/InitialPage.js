@@ -53,7 +53,6 @@ export class Initial extends Component<Props, State> {
           style={{width: '30%', marginTop: '20%'}}
           placeholder="BabyId(eg: id58) or secret code(eg: AEF123)"
           onChange={this.onChange}
-          type="number"
         />
         <Button onClick={this.getBabyData}>
           Confirm
