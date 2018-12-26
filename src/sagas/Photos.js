@@ -40,9 +40,6 @@ export function* watchUpdatePhotos() {
         yield take(ActionTypes.UPDATE_IMAGE_INFO)
       }
       yield put(setHomeStatusProcess())
-    } else {
-      alert("No photos found for this baby");
-      console.error("NO PHOTOS FETCHED FROM SERVER");
     }
   }
 }
@@ -52,7 +49,7 @@ function* queryPhotoData(action) {
   try {
     const res = yield apply(ApiClient, ApiClient.queryPhotosData, [action.payload])
     const data = JSON.parse(res.data.photobookData);
-    if (data && data.posts) {
+    if (data && data.posts && data.posts.length) {
       yield all([
         put(setPosts(data.posts)),
         put(setPhotos(data.photos_data)),
