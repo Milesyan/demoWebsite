@@ -8,40 +8,6 @@ import { photos as mockPhotos, photoPosts as mockPosts } from '../reducers/__moc
 import { baby as mockBaby } from '../reducers/__mock__/baby';
 import Storage from '../localStorage';
 
-function* queryPhotoData(action) {
-  try {
-    const res = yield apply(ApiClient, ApiClient.queryPhotosData, [action.payload])
-    const data = JSON.parse(res.data.photobookData);
-    if (data && data.posts) {
-      yield all([
-        put(setPosts(data.posts)),
-        put(setPhotos(data.photos_data)),
-        put(setBaby(data.baby_data))
-      ])
-    } else {
-      if (data.errmsg === "authorization expired") {
-        alert("Token Expired")
-        yield apply(Storage, Storage.clearUserToken);
-        yield put(setHomeLoginDialogStatus(true))
-      } else {
-        alert("no data fetched from server")
-      }
-    }
-  } catch (e){
-    yield apply(Storage, Storage.clearUserToken);
-    yield put(setHomeLoginDialogStatus(true))
-    alert("Failed to fetch data");
-  }
-}
-
-function* setDebugData() {
-  yield all([
-    yield put(setPosts(mockPosts)),
-    yield put(setPhotos(mockPhotos)),
-    yield put(setBaby(mockBaby))
-  ])
-}
-
 export function* watchReset() {
   yield takeEvery(ActionTypes.RESET, function* () {
     yield all([
@@ -51,6 +17,14 @@ export function* watchReset() {
     ])
     yield put(setHomeStatusInitial())
   })
+}
+
+export function* watchQueryPhotoData() {
+  yield takeLatest(ActionTypes.QUERY_BABY_DATA, queryPhotoData)
+}
+
+export function* watchUpdateDebugPhotos() {
+  yield takeLatest(ActionTypes.SET_DEBUG_DATA, setDebugData)
 }
 
 export function* watchUpdatePhotos() {
@@ -67,16 +41,46 @@ export function* watchUpdatePhotos() {
       }
       yield put(setHomeStatusProcess())
     } else {
+      alert("No photos found for this baby");
       console.error("NO PHOTOS FETCHED FROM SERVER");
     }
   }
 }
 
-export function* watchQueryPhotoData() {
-  yield takeLatest(ActionTypes.QUERY_BABY_DATA, queryPhotoData)
+
+function* queryPhotoData(action) {
+  try {
+    const res = yield apply(ApiClient, ApiClient.queryPhotosData, [action.payload])
+    const data = JSON.parse(res.data.photobookData);
+    if (data && data.posts) {
+      yield all([
+        put(setPosts(data.posts)),
+        put(setPhotos(data.photos_data)),
+        put(setBaby(data.baby_data))
+      ])
+    } else {
+      if (data && data.errmsg === "authorization expired") {
+        alert("Token Expired")
+        yield apply(Storage, Storage.clearUserToken);
+        yield put(setHomeLoginDialogStatus(true))
+      } else if (res.errors) {
+        console.warn("SERVER ERROR", res.errors);
+        alert("Server met some errors");
+      } else {
+        alert("no data fetched from server");
+      }
+    }
+  } catch (e){
+    console.warn('ERROR', e);
+
+    alert("Failed to fetch data");
+  }
 }
 
-export function* watchUpdateDebugPhotos() {
-  yield takeLatest(ActionTypes.SET_DEBUG_DATA, setDebugData)
+function* setDebugData() {
+  yield all([
+    put(setPosts(mockPosts)),
+    put(setPhotos(mockPhotos)),
+    put(setBaby(mockBaby))
+  ])
 }
-
